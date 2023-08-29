@@ -1,0 +1,19 @@
+# action.yml
+name: 'JARVIS'
+description: 'Auto fix to follow MISRA rule on the branch which triggers a workflow'
+inputs:
+  token:
+    description: 'GITHUB_TOKEN'
+    default: ${{ github.token }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set permissions as executable
+      run: chmod +x -R $GITHUB_ACTION_PATH
+      shell: bash
+    - run: python3 $GITHUB_ACTION_PATH/entry.py
+      shell: bash
+      env:
+        TOKEN: ${{ inputs.token }}
+        VALIDATOR: ${{ inputs.validator }}
