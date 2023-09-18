@@ -1,0 +1,17 @@
+name: vulcan
+
+on:
+    workflow_run:
+        workflows: [regression test]
+        types: [completed]
+
+jobs:
+    auto-repair:
+        runs-on: self-hosted
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        steps:
+            - name: run vulcan action
+              uses: Suresoft-GLaDOS/vulcan-action@main
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                openai-key: $OPENAI_API_KEY

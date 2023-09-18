@@ -1,7 +1,8 @@
 # vulcan/github_cli/checkout.sh
 #!/bin/bash
 
-cd $VULCAN_TARGET
+# shellcheck disable=SC2164
+cd "$JARVIS_TARGET"
 
 DESTINATION_BRANCH="$GITHUB_REF_NAME"
 
