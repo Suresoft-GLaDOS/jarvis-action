@@ -18,6 +18,7 @@ docker run -d --name jarvis-ubuntu20.04 -u jarvis:jarvis -it ubuntu20.04
 retval=$?
 if [ $retval -ne 0 ]; then
     echo "Return code was not zero but $retval"
+    docker start jarvis-ubuntu20.04
 fi
 echo "Run docker test"
 
