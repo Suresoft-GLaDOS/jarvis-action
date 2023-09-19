@@ -11,7 +11,7 @@ echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
 echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
 
-docker build -t ubuntu20.04 .
+docker build -t ubuntu20.04 $GITHUB_ACTION_PATH
 
 docker run -d --name jarvis-ubuntu20.04 -u jarvis:jarvis -it ubuntu20.04
 
