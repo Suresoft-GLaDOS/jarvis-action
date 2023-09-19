@@ -9,6 +9,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Start!
+      run: echo "START!"
+      shell: bash
     - name: Set permissions as executable
       run: chmod +x -R $GITHUB_ACTION_PATH
       shell: bash
