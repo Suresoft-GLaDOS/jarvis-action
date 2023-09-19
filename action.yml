@@ -19,7 +19,7 @@ runs:
       run: python3 $GITHUB_ACTION_PATH/jarvis/setenv_writters.py
       shell: bash
     - name: Run action
-      run: python3 $GITHUB_ACTION_PATH/jarvis/action.sh
+      run: $GITHUB_ACTION_PATH/jarvis/action.sh
       shell: bash
       env:
         TOKEN: ${{ inputs.token }}
