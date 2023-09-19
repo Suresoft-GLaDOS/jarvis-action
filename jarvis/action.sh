@@ -2,8 +2,8 @@
 
 # python3 "$GITHUB_ACTION_PATH"/jarvis/setenv.py
 
-sh "$GITHUB_ACTION_PATH/jarvis/env_sn/setenv.sh"
-sh "$GITHUB_ACTION_PATH/jarvis/env_sn/setenv_yml.sh"
+sh $GITHUB_ACTION_PATH/jarvis/env_sn/setenv.sh
+sh $GITHUB_ACTION_PATH/jarvis/env_sn/setenv_yml.sh
 
 echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
