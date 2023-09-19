@@ -26,7 +26,7 @@ os.environ["JARVIS_OUTPUT_DIR"] = JARVIS_OUTPUT_DIR
 
 
 def setenv_writter():
-    with open(fr"{GITHUB_ACTION_PATH}jarvis/env_sh/setenv.sh", "w") as f:
+    with open(fr"{GITHUB_ACTION_PATH}/jarvis/env_sh/setenv.sh", "w") as f:
         setenv_data = f"""
 #!/bin/bash
 
@@ -46,7 +46,7 @@ export TARGET_DIR="{JARVIS_TARGET}"
 
 
 def setenv_yml_writter(yml):
-    with open(fr"{GITHUB_ACTION_PATH}jarvis/env_sh/setenv_yml.sh", "w") as f:
+    with open(fr"{GITHUB_ACTION_PATH}/jarvis/env_sh/setenv_yml.sh", "w") as f:
         setenv_yml_data = f"""
 #!/bin/bash
 
@@ -64,7 +64,7 @@ export OPENAI_PATH="{os.getenv("OPENAI_PATH")}"
 
 
 def setenv_docker_writter(): # To set variable in docker environment
-    with open(fr"{GITHUB_ACTION_PATH}jarvis/env_sh/setenv_docker.sh", "w") as f:
+    with open(fr"{GITHUB_ACTION_PATH}/jarvis/env_sh/setenv_docker.sh", "w") as f:
         setenv_docker_data = f"""
 #!/bin/bash
 
@@ -82,7 +82,7 @@ export JARVIS_OUTPUT_DIR="{os.path.join(JARVIS_WORKSPACE, "output", GITHUB_REPOS
 
 
 def git_config_writter():
-    with open(fr"{GITHUB_ACTION_PATH}jarvis/env_sh/git_config.sh", "w") as f:
+    with open(fr"{GITHUB_ACTION_PATH}/jarvis/env_sh/git_config.sh", "w") as f:
         git_config_data = f"""
 #!/bin/bash
 
