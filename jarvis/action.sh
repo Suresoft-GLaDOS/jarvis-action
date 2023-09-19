@@ -23,9 +23,9 @@ fi
 echo "Run docker test"
 
 
-docker exec -itu 0 jarvis-ubuntu20.04 sh -c "mkdir tbeg"
-docker exec -itu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
-docker exec -itu 0 jarvis-ubuntu20.04 sh -s "mkdir scripts"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir tbeg"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir scripts"
 retval=$?
 if [ $retval -ne 0 ]; then
     echo "Return code was not zero but $retval"
@@ -37,8 +37,8 @@ docker cp "$CSBUILD_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/tbeg/
 docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
-docker exec -itu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/git_config.sh"
-docker exec -itu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/git_config.sh"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 
 retval=$?
 if [ $retval -ne 0 ]; then
@@ -47,11 +47,11 @@ fi
 
 echo "cp test"
 
-docker exec -itu 0 jarvis-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/kyham/JARVIS"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/kyham/JARVIS"
 
 echo "JARVIS clone"
 
-docker exec -itu 0 jarvis-ubuntu20.04 sh -c "python3 "$WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "python3 "$WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
