@@ -154,6 +154,8 @@ def _parse_yaml():
     return yml
 
 
+os.chdir(f"{GITHUB_ACTION_PATH}/jarvis")
+os.mkdir("env_sh")
 target_yml = _parse_yaml()
 setenv_writter()
 setenv_yml_writter(target_yml)
