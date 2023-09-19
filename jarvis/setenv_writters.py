@@ -15,7 +15,7 @@ GITHUB_REPOSITORY_OWNER = os.getenv("GITHUB_REPOSITORY_OWNER")
 GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE")
 
 JARVIS_TARGET = os.path.join(JARVIS_WORKSPACE, GITHUB_REPOSITORY) if GITHUB_REPOSITORY else JARVIS_WORKSPACE
-JARVIS_YML_PATH = os.path.join(JARVIS_TARGET, "jarvis.yml")
+JARVIS_YML_PATH = os.path.join(GITHUB_WORKSPACE, "jarvis.yml")
 JARVIS_SUFFIX = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
 JARVIS_OUTPUT_DIR = os.path.realpath(os.path.join(JARVIS_WORKSPACE, "..", "..", "output", GITHUB_REPOSITORY, JARVIS_SUFFIX))
 
