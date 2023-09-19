@@ -2,7 +2,7 @@
 
 # python3 "$GITHUB_ACTION_PATH"/jarvis/setenv.py
 
-echo ${GITHUB_ACTION_PATH}
+echo $GITHUB_ACTION_PATH
 
 $GITHUB_ACTION_PATH/jarvis/env_sh/setenv.sh
 $GITHUB_ACTION_PATH/jarvis/env_sh/setenv_yml.sh
