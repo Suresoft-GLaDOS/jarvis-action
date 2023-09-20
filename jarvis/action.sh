@@ -4,8 +4,8 @@
 
 echo $GITHUB_ACTION_PATH
 
-sh $GITHUB_ACTION_PATH/jarvis/env_sh/setenv.sh
-sh $GITHUB_ACTION_PATH/jarvis/env_sh/setenv_yml.sh
+bash $GITHUB_ACTION_PATH/jarvis/env_sh/setenv.sh
+bash $GITHUB_ACTION_PATH/jarvis/env_sh/setenv_yml.sh
 
 echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
