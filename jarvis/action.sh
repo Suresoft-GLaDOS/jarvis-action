@@ -7,6 +7,12 @@ echo $GITHUB_ACTION_PATH
 bash $GITHUB_ACTION_PATH/jarvis/env_sh/setenv.sh
 bash $GITHUB_ACTION_PATH/jarvis/env_sh/setenv_yml.sh
 
+retval=$?
+if [ $retval -ne 0 ]; then
+    echo "Return code was not zero but $retval"
+fi
+echo "Run shell script test"
+
 echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
 echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
