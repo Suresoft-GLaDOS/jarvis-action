@@ -57,7 +57,7 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/ky
 
 echo "JARVIS clone"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "python3 "$WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
