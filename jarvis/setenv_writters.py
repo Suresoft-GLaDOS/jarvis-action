@@ -6,7 +6,15 @@ import sys
 import yaml
 
 
-JARVIS_WORKSPACE=os.getenv("JARVIS_WORKSPACE", "/home/workspace") # Workspace in docker container. Target repository will be cloned here.
+os.getenv("JARVIS_WORKSPACE")
+
+if os.getenv("JARVIS_WORKSPACE") != None:
+    print("JARVIS_WORKSPACE is not None")
+else:
+    print("JARVIS_WORKSPACE is None")
+
+JARVIS_WORKSPACE=os.getenv("JARVIS_WORKSPACE") if os.getenv("JARVIS_WORKSPACE") != None else "/home/workspace" # Workspace in docker container. Target repository will be cloned here.
+print(JARVIS_WORKSPACE)
 WORKSPACE=JARVIS_WORKSPACE
 
 GITHUB_ACTION_PATH = os.getenv("GITHUB_ACTION_PATH", "./")
@@ -35,7 +43,7 @@ export GITHUB_REPOSITORY="{os.getenv("GITHUB_REPOSITORY")}"
 export GITHUB_WORKSPACE="{os.getenv("GITHUB_WORKSPACE")}"
 export TARGET_REPO_NAME="{os.getenv("TARGET_REPO_NAME")}"
 
-export JARVIS_WORKSPACE="{os.getenv("JARVIS_WORKSPACE")}"
+export JARVIS_WORKSPACE="{JARVIS_WORKSPACE}"
 export JARVIS_TARGET="{os.path.join(JARVIS_WORKSPACE, GITHUB_REPOSITORY) if GITHUB_REPOSITORY else JARVIS_WORKSPACE}"
 export JARVIS_YML_PATH="{os.path.join(JARVIS_TARGET, "jarvis.yml")}"
 export JARVIS_OUTPUT_DIR="{os.path.join(JARVIS_WORKSPACE, "output", GITHUB_REPOSITORY, JARVIS_SUFFIX)}"
@@ -54,7 +62,7 @@ export JARVIS_YML_NAME="{os.getenv("JARVIS_YML_NAME")}"
 export JARVIS_YML_DOCKER_IMAGE="{os.getenv("JARVIS_YML_DOCKER_IMAGE")}"
 export JARVIS_YML_TIME_OUT="{os.getenv("JARVIS_YML_TIME_OUT")}"
 export JARVIS_YML_OUTDIR="{os.getenv("JARVIS_YML_OUTDIR")}"
-export JARVIS_WORKSPACE="{os.getenv("JARVIS_WORKSPACE")}"
+export JARVIS_WORKSPACE="{JARVIS_WORKSPACE}"
 
 export CSBUILD_PATH="{os.getenv("CSBUILD_PATH")}"
 export OPENAI_PATH="{os.getenv("OPENAI_PATH")}"
@@ -72,7 +80,7 @@ export GITHUB_REPOSITORY="{os.getenv("GITHUB_REPOSITORY")}"
 export GITHUB_WORKSPACE="{os.getenv("GITHUB_WORKSPACE")}"
 export TARGET_REPO_NAME="{os.getenv("TARGET_REPO_NAME")}"
 
-export JARVIS_WORKSPACE="{os.getenv("JARVIS_WORKSPACE")}"
+export JARVIS_WORKSPACE="{JARVIS_WORKSPACE}"
 export JARVIS_TARGET="{os.path.join(JARVIS_WORKSPACE, GITHUB_REPOSITORY) if GITHUB_REPOSITORY else JARVIS_WORKSPACE}"
 export JARVIS_YML_PATH="{os.path.join(JARVIS_TARGET, "jarvis.yml")}"
 export JARVIS_OUTPUT_DIR="{os.path.join(JARVIS_WORKSPACE, "output", GITHUB_REPOSITORY, JARVIS_SUFFIX)}"
