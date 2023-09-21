@@ -28,7 +28,7 @@ if [ $retval -ne 0 ]; then
 fi
 echo "Run docker test"
 
-docker exec -iu 0  jarvis-ubuntu20.04 'echo $ACTION_CALL'
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c 'echo $ACTION_CALL'
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir scripts"
@@ -61,7 +61,7 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
