@@ -46,6 +46,8 @@ docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
+export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04 v1.2.0/bin"
+
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
 # docker exec -iu 0  jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 
@@ -63,7 +65,7 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE; export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; export JARVIS_TARGET=$JARVIS_TARGET; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; export JARVIS_TARGET=$JARVIS_TARGET; export CSBUILD_PATH=$CSBUILD_DOCKER; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
