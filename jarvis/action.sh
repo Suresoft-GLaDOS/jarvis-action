@@ -61,7 +61,7 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE; export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
