@@ -28,7 +28,7 @@ if [ $retval -ne 0 ]; then
 fi
 echo "Run docker test"
 
-docker exec -iu 0  jarvis-ubuntu20.04 sh -c "echo $ACTION_CALL"
+docker exec -iu 0  jarvis-ubuntu20.04 sh -c 'echo $ACTION_CALL'
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir scripts"
