@@ -27,6 +27,8 @@ JARVIS_YML_PATH = os.path.join(GITHUB_WORKSPACE, "jarvis.yml")
 JARVIS_SUFFIX = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
 JARVIS_OUTPUT_DIR = os.path.realpath(os.path.join(JARVIS_WORKSPACE, "..", "..", "output", GITHUB_REPOSITORY, JARVIS_SUFFIX))
 
+TARGET_REPO_NAME=GITHUB_REPOSITORY.replace(f"{GITHUB_REPOSITORY_OWNER}/", "")
+
 # reset some environment variables
 
 os.environ["JARVIS_TARGET"] = JARVIS_TARGET
@@ -39,8 +41,9 @@ def setenv_writter():
 
 export GITHUB_ACTION_PATH="{os.getenv("GITHUB_ACTION_PATH", "/")}"
 export GITHUB_REPOSITORY="{os.getenv("GITHUB_REPOSITORY")}"
+export GITHUB_REPOSITORY_OWNER="{GITHUB_REPOSITORY_OWNER}"
 export GITHUB_WORKSPACE="{os.getenv("GITHUB_WORKSPACE")}"
-export TARGET_REPO_NAME="{os.getenv("TARGET_REPO_NAME")}"
+export TARGET_REPO_NAME="{TARGET_REPO_NAME}"
 
 export JARVIS_WORKSPACE="{JARVIS_WORKSPACE}"
 export JARVIS_TARGET="{os.path.join(JARVIS_WORKSPACE, GITHUB_REPOSITORY) if GITHUB_REPOSITORY else JARVIS_WORKSPACE}"
