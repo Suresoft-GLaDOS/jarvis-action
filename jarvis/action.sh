@@ -17,6 +17,8 @@ echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
 echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
 
+export JARVIS_TARGET="$JARVIS_WORKSPACE/$GITHUB_REPOSITORY"
+
 
 docker build -t ubuntu20.04 $GITHUB_ACTION_PATH
 docker run -d --name jarvis-ubuntu20.04 -u jarvis:jarvis -i ubuntu20.04
@@ -61,7 +63,7 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE; export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE; export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; export JARVIS_TARGET=$JARVIS_TARGET; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
