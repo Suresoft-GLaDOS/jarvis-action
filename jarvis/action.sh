@@ -21,7 +21,7 @@ docker build -t ubuntu20.04 $GITHUB_ACTION_PATH
 
 docker stop jarvis-ubuntu20.04
 
-docker run -d --name jarvis-ubuntu20.04 -e ACTION_CALL=TRUE -u jarvis:jarvis -i ubuntu20.04
+docker run -d --name jarvis-ubuntu20.04 -u jarvis:jarvis -i ubuntu20.04
 
 retval=$?
 if [ $retval -ne 0 ]; then
@@ -46,9 +46,7 @@ docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
-docker exec -iu 0  jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"  #Why does not this run...
-
-docker run -e FOO=bar --name jarvis-ubuntu20.04
+docker exec -iu 0  jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 
 retval=$?
 if [ $retval -ne 0 ]; then
