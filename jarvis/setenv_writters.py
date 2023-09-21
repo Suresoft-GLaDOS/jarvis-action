@@ -82,6 +82,7 @@ export JARVIS_TARGET="{os.path.join(JARVIS_WORKSPACE, GITHUB_REPOSITORY) if GITH
 export JARVIS_YML_PATH="{os.path.join(JARVIS_TARGET, "jarvis.yml")}"
 export JARVIS_OUTPUT_DIR="{os.path.join(JARVIS_WORKSPACE, "output", GITHUB_REPOSITORY, JARVIS_SUFFIX)}"
 export ACTION_CALL=TRUE
+echo $ACTION_CALL
 
                         """
         f.write(setenv_docker_data)

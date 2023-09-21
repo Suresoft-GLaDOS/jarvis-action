@@ -42,8 +42,8 @@ docker cp "$CSBUILD_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/git_config.sh"
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "source $JARVIS_WORKSPACE/scripts/git_config.sh"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "source $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 
 retval=$?
 if [ $retval -ne 0 ]; then
