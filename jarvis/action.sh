@@ -46,7 +46,7 @@ docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.0
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/setenv_docker.sh" #Why does not this run...
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export ACTION_CALL=TRUE"
+docker exec -iu 0 jarvis-ubuntu20.04 "export ACTION_CALL=TRUE"
 
 retval=$?
 if [ $retval -ne 0 ]; then
