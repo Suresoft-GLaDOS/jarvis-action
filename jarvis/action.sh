@@ -29,7 +29,6 @@ fi
 echo "Run docker test"
 
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir tbeg"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir scripts"
 retval=$?
@@ -39,7 +38,7 @@ fi
 echo "mkdir test"
 
 
-docker cp "$CSBUILD_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/tbeg/
+docker cp "$CSBUILD_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
