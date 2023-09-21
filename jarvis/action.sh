@@ -28,7 +28,7 @@ if [ $retval -ne 0 ]; then
 fi
 echo "Run docker test"
 
-echo "[DEBUG] ACTION_CALL: $ACTION_CALL"
+docker exec -iu 0  jarvis-ubuntu20.04 sh -c "echo $ACTION_CALL"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir scripts"
@@ -45,7 +45,8 @@ docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
-docker exec -iu 0  jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
+# docker exec -iu 0  jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
+
 
 retval=$?
 if [ $retval -ne 0 ]; then
