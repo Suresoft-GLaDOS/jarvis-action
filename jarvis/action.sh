@@ -16,12 +16,9 @@ echo "Run shell script test"
 echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
 echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
-echo "[DEBUG] ACTION_CALL: $ACTION_CALL"
+
 
 docker build -t ubuntu20.04 $GITHUB_ACTION_PATH
-
-docker stop jarvis-ubuntu20.04
-
 docker run -d --name jarvis-ubuntu20.04 -u jarvis:jarvis -i ubuntu20.04
 
 retval=$?
@@ -31,6 +28,7 @@ if [ $retval -ne 0 ]; then
 fi
 echo "Run docker test"
 
+echo "[DEBUG] ACTION_CALL: $ACTION_CALL"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir openai"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "mkdir scripts"
