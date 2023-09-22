@@ -50,7 +50,7 @@ docker cp "/mnt/d/iitp/IITP_JARVIS/jarvis_workspace/actions-runner/_work/JARVIS_
 
 # docker run -d -iu ubuntu20.04:latest bash -s "source $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
-# docker exec -iu 0 -e PATH=$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH jarvis-ubuntu20.04
+# docker exec -iu 0 -e PATH=$JARVIS_WORKSPACE jarvis-ubuntu20.04
 
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
 docker exec -iu 0 jarvis-ubuntu20.04 bash -c "source $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
@@ -69,7 +69,7 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/ky
 
 echo "JARVIS clone"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout action_check; git pull"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
