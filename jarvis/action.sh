@@ -83,7 +83,7 @@ fi
 
 echo "python3 test"
 
-
+docker rm -f jarvis-ubuntu20.04 
 
 # docker exec -itu 0 jarvis-ubuntu20.04 sh -c "sh /home/exec_test/docker_scripts/setenv.sh"
 
