@@ -47,6 +47,7 @@ docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
+# docker exec -iu 0 -e PATH=$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH jarvis-ubuntu20.04
 
 docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
 # docker exec -iu 0  jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
@@ -65,7 +66,11 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; export JARVIS_TARGET=$JARVIS_TARGET; export CSBUILD_PATH=$CSBUILD_DOCKER; python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
+                                            export JARVIS_TARGET=$JARVIS_TARGET; \
+                                            export CSBUILD_PATH=$CSBUILD_DOCKER; \
+                                            export PATH=$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH; \
+                                            python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
 # do_something $retval
