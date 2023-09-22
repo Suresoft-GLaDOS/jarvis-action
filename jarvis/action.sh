@@ -46,6 +46,7 @@ docker cp "$CSBUILD_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
+docker cp "/mnt/d/iitp/IITP_JARVIS/jarvis_workspace/actions-runner/_work/JARVIS_demo/JARVIS_demo" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 
 # docker run -d -iu ubuntu20.04:latest bash -s "source $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
@@ -81,6 +82,8 @@ if [ $retval -ne 0 ]; then
 fi
 
 echo "python3 test"
+
+
 
 # docker exec -itu 0 jarvis-ubuntu20.04 sh -c "sh /home/exec_test/docker_scripts/setenv.sh"
 
