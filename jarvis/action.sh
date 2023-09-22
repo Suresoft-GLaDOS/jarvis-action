@@ -50,7 +50,7 @@ docker run -d -iu ubuntu20.04:latest bash -s "source $JARVIS_WORKSPACE/scripts/s
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
 # docker exec -iu 0 -e PATH=$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH jarvis-ubuntu20.04
 
-docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
+# docker exec -iu 0 jarvis-ubuntu20.04 "source $JARVIS_WORKSPACE/scripts/git_config.sh"
 # docker run -rm jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 
 
