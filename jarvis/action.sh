@@ -21,6 +21,7 @@ export JARVIS_TARGET="$JARVIS_WORKSPACE/$TARGET_REPO_NAME"
 
 
 docker build -t ubuntu20.04 $GITHUB_ACTION_PATH
+docker run -d --name jarvis-ubuntu20.04 -u jarvis:jarvis -i ubuntu20.04
 
 
 retval=$?
@@ -71,7 +72,6 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git pull"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
-                                            export PATH=$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH; \
                                             python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
 retval=$?
