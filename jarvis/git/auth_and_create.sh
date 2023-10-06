@@ -1,5 +1,11 @@
-# vulcan/github_cli/auth.sh
 #!/bin/bash
+
+echo JARVIS_WORKSPACE=$JARVIS_WORKSPACE
+JARVIS_OUTPUT_DIR=$JARVIS_WORKSPACE/JARVIS/workspace/outputs
+
+git config --global --add safe.directory "$JARVIS_WORKSPACE/JARVIS_demo"
+git config --global user.email "jarvis@action"
+git config --global user.name "jarvis-action"
 
 echo ==========gh auth login==========
 gh auth login --with-token < $JARVIS_WORKSPACE/token.txt
@@ -19,7 +25,7 @@ _create_issue() {
 	printf "$JARVIS_ISSUE_CREATE_RESULT\n" > $JARVIS_OUTPUT_DIR/issue_link
 }
 
-python3 $GITHUB_ACTION_PATH/jarvis/git/issue_title_generator.py
-python3 $GITHUB_ACTION_PATH/jarvis/git/issue_body_generator.py
+python3 $JARVIS_WORKSPACE/script/git/issue_title_generator.py
+python3 $JARVIS_WORKSPACE/script/git/issue_body_generator.py
 _create_issue
 
