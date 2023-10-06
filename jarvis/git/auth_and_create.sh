@@ -25,7 +25,7 @@ _create_issue() {
 	printf "$JARVIS_ISSUE_CREATE_RESULT\n" > $JARVIS_OUTPUT_DIR/issue_link
 }
 
-python3 $JARVIS_WORKSPACE/script/git/issue_title_generator.py
-python3 $JARVIS_WORKSPACE/script/git/issue_body_generator.py
+python3 $JARVIS_WORKSPACE/scripts/git/issue_title_generator.py
+python3 $JARVIS_WORKSPACE/scripts/git/issue_body_generator.py
 _create_issue
 
