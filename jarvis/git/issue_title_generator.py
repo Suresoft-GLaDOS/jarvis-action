@@ -26,6 +26,7 @@ def generate_issue_title():
 
     with open(f"{output_dir}/violated_rules.json", "r") as rules:
         rule_info = json.load(rules)
+        print(rule_info)
         rule_list = list(rule_info.keys())
 
     if len(rule_list) > 1:
