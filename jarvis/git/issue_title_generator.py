@@ -25,13 +25,16 @@ def generate_issue_title():
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 
     with open(f"{output_dir}/violated_rules.json", "r") as rules:
-        # rule_str = rules.read()
+        rule_str = rules.read()
         rule_info = json.load(rules)
+        rule_info_dict = json.loads(rule_info)
+
         print(type(rules))
         print(rule_info)
         print(type(rule_info))
-        # print(rule_str)
-        rule_list = list(rule_info.keys())
+        print(rule_str)
+        # rule_list = list(rule_info.keys())
+        rule_list = list(rule_info_dict.keys())
 
     if len(rule_list) > 1:
         issue_title = f"Violated rule {rule_list[0]} etc."
