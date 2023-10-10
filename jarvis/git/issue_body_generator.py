@@ -69,7 +69,7 @@ def _gen_rule_info():
         print(rule_info_dict)
         # rule_list = list(rule_info_dict.keys())
 
-    for k, v in rule_info:
+    for k, v in rule_info_dict:
         body += f"{k}: {v} violated."
     
     return body
