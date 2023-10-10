@@ -3,7 +3,7 @@
 echo JARVIS_WORKSPACE=$JARVIS_WORKSPACE
 JARVIS_OUTPUT_DIR=$JARVIS_WORKSPACE/JARVIS/workspace/outputs
 
-git config --global --add safe.directory "$JARVIS_WORKSPACE/JARVIS_demo"
+git config --global --add safe.directory "$JARVIS_TARGET"
 git config --global user.email "jarvis@action"
 git config --global user.name "jarvis-action"
 
@@ -15,6 +15,7 @@ echo ==================================
 
 echo ==========issue create==========
 _create_issue() {
+	cd $JARVIS_TARGET
 	echo [DEBUG] create issue
 	JARVIS_ISSUE_CREATE_RESULT=$(\
 		gh issue create \
