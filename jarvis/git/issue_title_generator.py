@@ -28,6 +28,7 @@ def generate_issue_title():
         rule_str = rules.read()
         rule_info = json.loads(rule_str)
         print(rule_info)
+        print(rule_str)
         rule_list = list(rule_info.keys())
 
     if len(rule_list) > 1:
