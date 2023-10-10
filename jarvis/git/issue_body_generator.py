@@ -65,7 +65,7 @@ def _gen_rule_info():
 
         print(type(rules))
         print(rule_info)
-        print(type(rule_info))
+        print(type(rule_info_dict))
         print(rule_info_dict)
         # rule_list = list(rule_info_dict.keys())
 
