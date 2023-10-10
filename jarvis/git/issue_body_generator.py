@@ -63,13 +63,13 @@ def _gen_rule_info():
         rule_info = json.load(rules)
         rule_info_dict = json.loads(rule_info)
 
-        print(type(rules))
-        print(rule_info)
-        print(type(rule_info_dict))
-        print(rule_info_dict)
+        # print(type(rules))
+        # print(rule_info)
+        # print(type(rule_info_dict))
+        # print(rule_info_dict)
         # rule_list = list(rule_info_dict.keys())
 
-    for k, v in rule_info_dict:
+    for k, v in rule_info_dict.items():
         body += f"{k}: {v} violated."
     
     return body
