@@ -48,6 +48,7 @@ def run():
     os.system(f"git apply < {patch_path}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by Vulcan\"")
+    os.system(f"git remote -v")
     os.system(f"git push origin {patch_branch}")
     create_pull_request(patch_branch)
     os.system(f"git checkout {GITHUB_REF_NAME}")
