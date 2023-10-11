@@ -4,7 +4,7 @@ ENV ACTION_CALL=TRUE
 ENV PATH=/home/workspace/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH
 
 RUN apt update
-RUN apt install -y vim binutils gcc g++ make python3 git gitpython
+RUN apt install -y vim binutils gcc g++ make python3 git
 RUN apt-get -y install python3-pip
 
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
@@ -14,7 +14,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
     && apt update \
     && apt install gh -y
 
-RUN pip install python-dotenv openai pyfiglet
+RUN pip install python-dotenv openai pyfiglet gitpython
 
 RUN useradd --home-dir /home/workspace jarvis
 
