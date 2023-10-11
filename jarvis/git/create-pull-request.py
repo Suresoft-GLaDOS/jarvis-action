@@ -5,8 +5,9 @@ import datetime
 
 
 GITHUB_REF_NAME = os.getenv("GITHUB_REF_NAME", None)
-JARVIS_OUTPUT_DIR = os.getenv("JARVIS_OUTPUT_DIR")
+
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
+JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_TARGET= os.getenv("JARVIS_TARGET")
 
 PR_INFO = dict()
