@@ -52,7 +52,7 @@ def run():
     os.system(f"git apply < {patch_path}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by Vulcan\"")
-    remote = subprocess.check_output("git remote -v")
+    # remote = subprocess.check_output("git remote -v")
     os.system(f"git remote remove origin")
     os.system(f"git remote add origin https://{TOKEN}@github.com/{GITHUB_REPOSITORY}")
     print(f"git remote add origin https://{TOKEN}@github.com/{GITHUB_REPOSITORY}")
