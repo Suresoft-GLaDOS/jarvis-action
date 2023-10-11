@@ -60,7 +60,7 @@ def _write_basic_fl_info(fl_info):
 
 def _gen_file_info():
     body = "Violated file list:\n"
-    project_json_list = glob.glob(f"{JARVIS_WORKSPACE}/JARVIS/{JARVIS_TARGET}/.staticdata/*/project.json")
+    project_json_list = glob.glob(f"{JARVIS_WORKSPACE}/JARVIS/workspace{JARVIS_TARGET}/.staticdata/*/project.json")
     print(f"{JARVIS_WORKSPACE}/JARVIS/{JARVIS_TARGET}/.staticdata/*/project.json")
     print(project_json_list)
 
