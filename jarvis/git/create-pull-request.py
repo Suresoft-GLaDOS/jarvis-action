@@ -9,7 +9,7 @@ GITHUB_REF_NAME = os.getenv("GITHUB_REF_NAME", None)
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
 JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_TARGET= os.getenv("JARVIS_TARGET")
-with open("$JARVIS_WORKSPACE/token.txt", "r") as token:
+with open(f"{JARVIS_WORKSPACE}/token.txt", "r") as token:
     TOKEN=token.read()
 
 PR_INFO = dict()
