@@ -22,6 +22,7 @@ GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY") # Repository name action runn
 GITHUB_REPOSITORY_OWNER = os.getenv("GITHUB_REPOSITORY_OWNER")
 GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE")
 GITHUB_SHA=os.getenv("GITHUB_SHA")
+GITHUB_REF_NAME=os.getenv("GITHUB_REF_NAME", None)
 
 JARVIS_TARGET = os.path.join(JARVIS_WORKSPACE, GITHUB_REPOSITORY) if GITHUB_REPOSITORY else JARVIS_WORKSPACE
 JARVIS_YML_PATH = os.path.join(GITHUB_WORKSPACE, "jarvis.yml")
@@ -53,6 +54,7 @@ export JARVIS_OUTPUT_DIR="{os.path.join(JARVIS_WORKSPACE, "output", GITHUB_REPOS
 export TARGET_DIR="{JARVIS_TARGET}"
 
 export GITHUB_SHA="{GITHUB_SHA}"
+export GITHUB_REF_NAME="{GITHUB_REF_NAME}"
 
                         """
         f.write(setenv_data)

@@ -28,5 +28,6 @@ _create_issue() {
 
 python3 $JARVIS_WORKSPACE/scripts/git/issue_title_generator.py
 python3 $JARVIS_WORKSPACE/scripts/git/issue_body_generator.py
+python3 $JARVIS_WORKSPACE/scripts/git/create-pull-request.py
 _create_issue
 
