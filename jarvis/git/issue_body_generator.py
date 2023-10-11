@@ -61,13 +61,16 @@ def _write_basic_fl_info(fl_info):
 def _gen_file_info():
     body = "Violated file list:\n"
     project_json_list = glob.glob(f"{JARVIS_TARGET}/.staticdata/*/project.json")
+    print(f"{JARVIS_TARGET}/.staticdata/*/project.json")
+    print(project_json_list)
 
+    source_dict_list = []
     for project_json in project_json_list:
         with open(project_json, "r") as project_json_file:
             rule_info = json.load(project_json_file)
             rule_info_dict = json.loads(rule_info)
-
-    source_dict_list = rule_info_dict["modules"]["sources"]
+            source_dict_list = rule_info_dict["modules"]["sources"]
+    
 
     for source_dict in source_dict_list:
         body += source_dict["originalPath"] + "\n"
