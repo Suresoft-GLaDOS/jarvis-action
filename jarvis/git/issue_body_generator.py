@@ -68,8 +68,8 @@ def _gen_file_info():
     for project_json in project_json_list:
         with open(project_json, "r") as project_json_file:
             rule_info = json.load(project_json_file)
-            rule_info_dict = json.loads(rule_info)
-            source_dict_list = rule_info_dict["modules"]["sources"]
+            # rule_info_dict = json.loads(rule_info)
+            source_dict_list = rule_info["modules"]["sources"]
     
 
     for source_dict in source_dict_list:
