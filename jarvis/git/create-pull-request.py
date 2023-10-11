@@ -55,6 +55,7 @@ def run():
     remote = subprocess.check_output("git remote -v")
     os.system(f"git remote remove origin")
     os.system(f"git remote add origin https://{TOKEN}@github.com/{GITHUB_REPOSITORY}")
+    print(f"git remote add origin https://{TOKEN}@github.com/{GITHUB_REPOSITORY}")
     os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     os.system(f"git push origin {patch_branch}")
     create_pull_request(patch_branch)
