@@ -94,6 +94,7 @@ docker exec -iu 0 jarvis-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$JARVIS_WO
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
                                             export GITHUB_SHA=$GITHUB_SHA; \
                                             export GITHUB_REF_NAME=$GITHUB_REF_NAME; \
+                                            export GITHUB_REPOSITORY=$GITHUB_REPOSITORY; \
                                             $JARVIS_WORKSPACE/scripts/git/auth_and_create.sh"
 
 echo "python3 test"
