@@ -10,7 +10,7 @@ git config --global user.name "jarvis-action"
 echo ==========gh auth login==========
 gh auth login --with-token < $JARVIS_WORKSPACE/token.txt
 gh auth status
-rm $JARVIS_WORKSPACE/token.txt
+
 echo ==================================
 
 echo ==========issue create==========
@@ -31,3 +31,4 @@ python3 $JARVIS_WORKSPACE/scripts/git/issue_body_generator.py
 
 _create_issue
 python3 $JARVIS_WORKSPACE/scripts/git/create-pull-request.py
+rm $JARVIS_WORKSPACE/token.txt
