@@ -31,4 +31,4 @@ python3 $JARVIS_WORKSPACE/scripts/git/issue_body_generator.py
 
 _create_issue
 python3 $JARVIS_WORKSPACE/scripts/git/create-pull-request.py
-rm $JARVIS_WORKSPACE/token.txt
+# rm $JARVIS_WORKSPACE/token.txt
