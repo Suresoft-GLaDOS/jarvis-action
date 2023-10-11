@@ -36,6 +36,7 @@ def run():
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 
     patch_path = f"{output_dir}/fix_violation.patch"
+    print(f"Patch path: {patch_path}")
     
     os.system("git clean -xdf")
     os.system(f"git checkout {GITHUB_REF_NAME}")
