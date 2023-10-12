@@ -12,7 +12,7 @@ JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outpu
 JARVIS_TARGET= os.getenv("JARVIS_TARGET")
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
 with open(f"{JARVIS_WORKSPACE}/token.txt", "r") as token:
-    TOKEN=token.read()
+    TOKEN=token.readline().strip()
 
 PR_INFO = dict()
 
