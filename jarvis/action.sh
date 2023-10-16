@@ -101,6 +101,7 @@ docker exec -iu 0 jarvis-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$JARVIS_WO
 docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch $GITHUB_ACTION_PATH/jarvis/temp/    
 docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/issue_link $GITHUB_ACTION_PATH/jarvis/temp/       
 
+python3 -m pip install --upgrade pip
 pip install gitpython
 type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
