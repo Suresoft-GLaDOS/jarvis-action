@@ -7,6 +7,7 @@ import datetime
 
 GITHUB_REF_NAME = os.getenv("GITHUB_REF_NAME", None)
 GITHUB_ACTION_PATH = os.getenv("GITHUB_ACTION_PATH")
+ACTION_TEMP_DIR = os.path.join(GITHUB_ACTION_PATH, "jarvis", "temp")
 
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
 JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
@@ -20,7 +21,7 @@ PR_INFO = dict()
 
 
 def construct_pr_info():
-    with open(os.path.join(JARVIS_OUTPUT_DIR, "issue_link")) as f:
+    with open(os.path.join(ACTION_TEMP_DIR, "issue_link")) as f:
         PR_INFO["issue_link"] = f.read().strip()
     PR_INFO["issue_number"] = PR_INFO["issue_link"].split("/")[-1]
     
@@ -40,9 +41,8 @@ def create_pull_request(patch_branch):
 
 def run():
     print(f"[DEBUG] create pr", flush=True)
-    output_dir = os.path.join(GITHUB_ACTION_PATH, "jarvis", "temp")
 
-    patch_path = f"{output_dir}/fix_violation.patch"
+    patch_path = f"{ACTION_TEMP_DIR}/fix_violation.patch"
     print(f"Patch path: {patch_path}")
     
     os.system("git clean -xdf")
