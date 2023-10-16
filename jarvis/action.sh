@@ -98,8 +98,9 @@ docker exec -iu 0 jarvis-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$JARVIS_WO
                                             export GITHUB_REPOSITORY=$GITHUB_REPOSITORY; \
                                             $JARVIS_WORKSPACE/scripts/git/auth_and_create.sh"
 
-docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch $GITHUB_ACTION_PATH/jarvis/temp/                   
+docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch $GITHUB_ACTION_PATH/jarvis/temp/       
 
+pip install gitpython
 cd $GITHUB_WORKSPACE
 python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py                                            
 
