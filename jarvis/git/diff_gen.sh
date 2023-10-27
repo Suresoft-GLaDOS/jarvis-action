@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd $JARVIS_WORKSPACE/JARVIS/workspace/$COPIED_WORKSPACE/$TARGET_REPO_NAME
-echo $COPIED_WORKSPACE 
+cd $JARVIS_WORKSPACE/JARVIS/workspace/home/workspace/$TARGET_REPO_NAME
+echo $JARVIS_WORKSPACE/JARVIS/workspace/home/workspace/$TARGET_REPO_NAME 
 
 mkdir patches
 
