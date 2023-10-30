@@ -24,40 +24,6 @@ def _close_collapsed_section():
     return f"\n\n</details>\n"
 
 
-def _write_5_more_equal_fl_info(fl_info):
-    content1 = "Clicking on the link, you take the page with code highlighted."
-    content2 = "There are a lot of the suspicious code snippets and show 5 among them."
-    content3 = "Recommend that split your tests or adde new tests."
-    body = f"{CONTOUR_LINE}{content1}\n{content2}\n{content3}\n"
-    body += _open_collapsed_section("Click here for FL information")
-    for d in fl_info:
-        buggy_source = d[0]
-        buggy_line = d[1]
-        buggy_score = d[2]
-        body += f"{CONTOUR_LINE}Suspicious score: {buggy_score:.2f} {VULCAN_TRIGGER_URL}/{buggy_source}#L{buggy_line}\n"
-    
-    body += _close_collapsed_section()
-    return body
-
-
-def _write_basic_fl_info(fl_info):
-    buggy_source = fl_info[0][0]
-    buggy_line = fl_info[0][1]
-    buggy_score = fl_info[0][2]
-    content1 = "Clicking on the link, you take the page with code highlighted."
-    content2 = "Here is most suspicious code piece."
-    content3 = "Recommend debugging here.\nClick below the collapsed section for more FL information."
-    body = f"\n\n{content1}\n- [ ] {content2}\n{VULCAN_TRIGGER_URL}/{buggy_source}#L{buggy_line}\n{content3}\n"
-    body += _open_collapsed_section("Click here for more FL")
-    for d in fl_info[1:]:
-        buggy_source = d[0]
-        buggy_line = d[1]
-        buggy_score = d[2]
-        body += f"{CONTOUR_LINE}Suspicious score: {buggy_score:.2f} {VULCAN_TRIGGER_URL}/{buggy_source}#L{buggy_line}\n"
-    body += _close_collapsed_section()
-    return body
-
-
 def _gen_file_info():
     body = f"{CONTOUR_LINE}Violated file list:\n"
     project_json_list = glob.glob(f"{JARVIS_WORKSPACE}/JARVIS/workspace{JARVIS_TARGET}/.staticdata/*/project.json")

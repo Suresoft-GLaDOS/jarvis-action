@@ -99,7 +99,7 @@ docker exec -iu 0 jarvis-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$JARVIS_WO
                                             $JARVIS_WORKSPACE/scripts/git/auth_and_create.sh"
 
 docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch $GITHUB_ACTION_PATH/jarvis/temp/    
-docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/issue_link $GITHUB_ACTION_PATH/jarvis/temp/       
+docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/ $GITHUB_ACTION_PATH/jarvis/temp/       
 
 python3 -m pip install --upgrade pip
 pip install gitpython
