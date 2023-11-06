@@ -26,8 +26,8 @@ _create_issue() {
 	printf "$JARVIS_ISSUE_CREATE_RESULT\n" > $JARVIS_OUTPUT_DIR/issue_link
 }
 
-echo "DIFFGEN"
-export TARGET_REPO_NAME=$TARGET_REPO_NAME; sh $JARVIS_WORKSPACE/scripts/git/diff_gen.sh
+# echo "DIFFGEN"
+# export TARGET_REPO_NAME=$TARGET_REPO_NAME; sh $JARVIS_WORKSPACE/scripts/git/diff_gen.sh
 python3 $JARVIS_WORKSPACE/scripts/git/issue_title_generator.py
 python3 $JARVIS_WORKSPACE/scripts/git/issue_body_generator.py
 

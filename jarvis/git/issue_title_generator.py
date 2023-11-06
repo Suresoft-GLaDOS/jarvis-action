@@ -4,17 +4,6 @@ import json
 JARVIS_OUTPUT_DIR = os.getenv("JARVIS_OUTPUT_DIR")
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
 
-
-def collect_violated_rule():
-    print(f"[DEBUG] collect violated rule", flush=True)
-    defect_info_dir = os.path.join(JARVIS_OUTPUT_DIR, "defect_info.json")
-    with open(os.path.join(JARVIS_OUTPUT_DIR, "violated.rule"), "a") as rules:
-        with open(defect_info_dir) as defect_info_json:
-            defect_info = json.load(defect_info_json)
-            for defect in defect_info['defects']:
-                rules.write(str(defect['rule']) + "\n")
-
-
 def generate_issue_title():
     '''
     issue: Violated rule(s) {rule name} etc.
@@ -43,5 +32,4 @@ def generate_issue_title():
     with open(os.path.join(output_dir, "issue_title"), "a") as title_file:
         title_file.write(issue_title)
 
-# collect_violated_rule()
 generate_issue_title()

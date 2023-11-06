@@ -17,4 +17,3 @@ for file in $files; do
     echo "Saved diff for $file to $JARVIS_WORKSPACE/JARVIS/workspace/outputs/$diff_file"
 done
 
-git diff -- ':(exclude)*/.staticdata/*' > $JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch

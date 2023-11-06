@@ -85,6 +85,10 @@ if [ $retval -ne 0 ]; then
 fi
 
 docker exec -iu 0 jarvis-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
+                                            export TARGET_REPO_NAME=$TARGET_REPO_NAME;\
+                                            $JARVIS_WORKSPACE/scripts/git/diff_gen.sh"
+
+docker exec -iu 0 jarvis-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
                                             export GITHUB_SHA=$GITHUB_SHA; \
                                             export GITHUB_REF_NAME=$GITHUB_REF_NAME; \
