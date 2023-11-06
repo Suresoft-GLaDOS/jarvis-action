@@ -17,7 +17,6 @@ def collect_violated_rule():
 
 def generate_issue_title():
     '''
-
     issue: Violated rule(s) {rule name} etc.
     pr:    Fixed Violation(s) {rule name} etc. (#)
     '''

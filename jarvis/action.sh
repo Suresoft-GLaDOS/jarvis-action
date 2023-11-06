@@ -48,25 +48,18 @@ echo "mkdir test"
 
 
 docker cp "$CSBUILD_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
-# docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$OPENAI_PATH" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/token.txt" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/ 
 docker cp "$CSBUILD_PATH/repo_token.txt" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/ 
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
-# docker cp "/mnt/d/iitp/IITP_JARVIS/jarvis_workspace/actions-runner/_work/JARVIS_demo/JARVIS_demo" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 docker cp "$GITHUB_WORKSPACE" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 
-# docker run -d -iu ubuntu20.04:latest bash -s "source $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
-# docker exec -iu 0 -e PATH=$JARVIS_WORKSPACE jarvis-ubuntu20.04
 
-# docker exec -iu 0 jarvis-ubuntu20.04 sh -c"$JARVIS_WORKSPACE/scripts/git_config.sh"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 echo $ACTION_CALL
-# docker run -rm jarvis-ubuntu20.04 ". $JARVIS_WORKSPACE/scripts/setenv_docker.sh"
-
 
 retval=$?
 if [ $retval -ne 0 ]; then
@@ -103,12 +96,7 @@ docker cp jarvis-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/ $GITHUB
 
 python3 -m pip install --upgrade pip
 pip install gitpython
-# type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-# curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-# && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-# && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-# && sudo apt update \
-# && sudo apt install gh -y
+
 cd $GITHUB_WORKSPACE
 python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py                                            
 
