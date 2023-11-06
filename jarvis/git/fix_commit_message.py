@@ -27,6 +27,7 @@ def modify_commit_msg(diff_list, rule_info_dict):
     with open(f"{JARVIS_WORKSPACE}/openai/openai_key", "r") as f:
         OPENAI_API_KEY = f.readline().strip()
     print(f"Open AI KEY: {OPENAI_API_KEY[-5:]}")
+    openai.api_key = OPENAI_API_KEY
 
     issue_msg = ""
 
