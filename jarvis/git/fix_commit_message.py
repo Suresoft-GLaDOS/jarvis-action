@@ -21,6 +21,12 @@ def modify_commit_msg(diff_list, rule_info_dict):
     # get Open API Key
     load_dotenv()
     openai.api_key= os.getenv("OPENAI_API_KEY")
+    JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
+    THRESHOLD = os.getenv("THRESHOLD", None)
+    print(f"{JARVIS_WORKSPACE}/openai/openai_key")
+    with open(f"{JARVIS_WORKSPACE}/openai/openai_key", "r") as f:
+        OPENAI_API_KEY = f.readline().strip()
+    print(f"Open AI KEY: {OPENAI_API_KEY[-5:]}")
 
     issue_msg = ""
 
