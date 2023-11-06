@@ -17,17 +17,19 @@ base_messages = [
     }
 ]
 
-def modify_commit_msg(diff_list):
+def modify_commit_msg(diff_list, rule_info_dict):
     # get Open API Key
     load_dotenv()
     openai.api_key= os.getenv("OPENAI_API_KEY")
 
     issue_msg = ""
+
+    print("Rule info dict: " + str(rule_info_dict))
     
-    for diff, rule in diff_list.items():
+    for diff in diff_list:
         print("Sending...\n")
         print("[+] target: ", diff)
-        print("[+] rule : ", rule)
+        print("[+] rule : ", str(rule_info_dict))
 
         with open(diff, "r+") as f:
             diff_contents = f.read()

@@ -31,16 +31,13 @@ def _read_rule_json():
         rule_info_dict = json.loads(rule_info)
     return rule_info_dict
 
-def _gen_diff_dict(rule_info_dict):
+def _gen_diff_list():
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
     print(f"Output dir: {output_dir}")
     diff_list = glob.glob(f"{output_dir}*.diff")
     print(diff_list)
 
-    diff_dict = {}
-    for diff in diff_list:
-        diff_dict[diff] = str(rule_info_dict)
-    return diff_dict
+    return diff_list
 
 
 def _gen_file_info():
@@ -108,8 +105,8 @@ def generate_issue_body():
     if os.path.isfile(f"{output_dir}/fix_violation.patch"):
         patch_info = _gen_patch_info()
 
-    diff_dict = _gen_diff_dict(rule_info_dict)
-    explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_dict)}"
+    diff_list = _gen_diff_list()
+    explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
     body = f"{info}{file_info}{patch_info}{explanation}"
     with open(os.path.join(output_dir, "issue_body"), "w") as f:
         f.write(body)
