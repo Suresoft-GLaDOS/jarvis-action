@@ -40,7 +40,7 @@ def modify_commit_msg(diff_list, rule_info_dict):
         messages = base_messages + \
         [{"role": "user",
             "content": 
-            "Rule:" f"{rule}" "\n"
+            "Rule:" f"{str(rule_info_dict)}" "\n"
             "The next contents are from a diff file.\n"
             f"{diff_contents}"
         }]
