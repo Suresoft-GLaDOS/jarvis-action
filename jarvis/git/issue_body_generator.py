@@ -69,14 +69,16 @@ def _gen_rule_info(rule_info_dict):
     return body
 
 
-def _gen_patch_info():
+def _gen_patch_info(diff_list):
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 
     body = f"{CONTOUR_LINE} Violation fixed by jarvis\n"
     body += _open_collapsed_section("plausible patch diff info")
-    with open(f"{output_dir}/fix_violation.patch", "r") as f:
-        code = f.read()
-    body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n"
+    for diff in diff_list:
+        print("Diff: " + diff)
+        with open(diff, "r") as f:
+            code = f.read()
+        body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n"
 
     body += _close_collapsed_section()
 
@@ -99,13 +101,13 @@ def generate_issue_body():
     rule_info_dict = _read_rule_json()
     info = _gen_rule_info(rule_info_dict)
     file_info = _gen_file_info()
-    
+    diff_list = _gen_diff_list()
+
     patch_info = ""
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
     if os.path.isfile(f"{output_dir}/fix_violation.patch"):
-        patch_info = _gen_patch_info()
-
-    diff_list = _gen_diff_list()
+        patch_info = _gen_patch_info(diff_list)
+    
     explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
     body = f"{info}{file_info}{patch_info}{explanation}"
     with open(os.path.join(output_dir, "issue_body"), "w") as f:
