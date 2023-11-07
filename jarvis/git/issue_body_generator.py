@@ -74,8 +74,6 @@ def _gen_patch_info(diff_list):
 
     body = f"{CONTOUR_LINE} Violation fixed by jarvis\n"
     body += _open_collapsed_section("plausible patch diff info")
-    print("Read diff")
-    print(diff_list)
     for diff in diff_list:
         print("Diff: " + diff)
         with open(diff, "r") as f:
@@ -107,8 +105,7 @@ def generate_issue_body():
 
     patch_info = ""
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
-    if os.path.isfile(f"{output_dir}/fix_violation.patch"):
-        patch_info = _gen_patch_info(diff_list)
+    patch_info = _gen_patch_info(diff_list)
     
     explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
     body = f"{info}{file_info}{patch_info}{explanation}"
