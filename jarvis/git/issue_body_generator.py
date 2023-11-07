@@ -74,6 +74,8 @@ def _gen_patch_info(diff_list):
 
     body = f"{CONTOUR_LINE} Violation fixed by jarvis\n"
     body += _open_collapsed_section("plausible patch diff info")
+    print("Read diff")
+    print(diff_list)
     for diff in diff_list:
         print("Diff: " + diff)
         with open(diff, "r") as f:
