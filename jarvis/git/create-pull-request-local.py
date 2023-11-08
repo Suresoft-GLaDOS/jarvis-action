@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import datetime
+import glob
 
 
 GITHUB_REF_NAME = os.getenv("GITHUB_REF_NAME", None)
@@ -28,6 +29,15 @@ def construct_pr_info():
     PR_INFO["title"] = pr_title
 
 
+def _gen_diff_list():
+    output_dir = ACTION_TEMP_DIR
+    print(f"Output temp dir: {output_dir}")
+    diff_list = glob.glob(f"{output_dir}/*.diff")
+    print(diff_list)
+
+    return diff_list
+
+
 def create_pull_request(patch_branch):
     pr_title = PR_INFO["title"]
     commit = os.getenv('GITHUB_SHA')
@@ -49,7 +59,10 @@ def run():
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
     os.system(f"git checkout -b {patch_branch}")
-    os.system(f"git apply < {patch_path}")
+    diff_list = _gen_diff_list()
+    for diff in diff_list:
+        print(diff)
+        os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
     os.system(f"gh auth login --with-token < {GITHUB_ACTION_PATH}/token.txt")
