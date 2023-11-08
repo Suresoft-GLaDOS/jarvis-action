@@ -62,7 +62,7 @@ def _gen_file_info():
 
 def _read_summary():
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
-    with open(output_dir + "summary.txt", "r") as f:
+    with open(output_dir + "/summary.txt", "r") as f:
         summary = f.read()
 
     return summary + CONTOUR_LINE
