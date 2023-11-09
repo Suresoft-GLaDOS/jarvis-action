@@ -72,7 +72,7 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/ky
 
 echo "JARVIS clone"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout 3.5; git pull"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout master; git pull"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
