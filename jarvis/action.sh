@@ -74,7 +74,8 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout master; git pull"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r requirements.txt;\
+                                            export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
                                             python3 "$JARVIS_WORKSPACE"/JARVIS/main.py"
 
