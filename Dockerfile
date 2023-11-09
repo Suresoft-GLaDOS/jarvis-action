@@ -5,7 +5,7 @@ ENV PATH=/home/workspace/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH
 
 RUN apt update
 RUN apt install -y vim binutils gcc g++ make python3 git
-RUN apt-get -y install python3-pip autoconf pkg-config libtool
+RUN apt-get -y install python3-pip
 RUN apt-get -y install autoconf
 RUN apt-get -y install pkg-config
 RUN apt-get -y install libtool
