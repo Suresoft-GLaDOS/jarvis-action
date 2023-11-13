@@ -79,8 +79,8 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout action_check
 #                                             export JARVIS_TARGET=$JARVIS_TARGET; \
 #                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
-                                            sh $JARVIS_WORKSPACE/scripts/setenv_docker.sh; \
+docker exec -iu 0 jarvis-ubuntu20.04 bash -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
+                                            $JARVIS_WORKSPACE/scripts/setenv_docker.sh; \
                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
 
 retval=$?
