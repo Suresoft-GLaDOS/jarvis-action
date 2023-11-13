@@ -168,7 +168,7 @@ def _parse_yaml():
     os.environ["JARVIS_WORKSPACE"] = yml["workspace"] if "workspace" in yml else ""
     os.environ["CSBUILD_PATH"] = yml["csbuild-path"]
     os.environ["OPENAI_PATH"] = yml["openai-path"]
-    os.environ["CSBUILD_USER_OPTION"] = yml["csbuild-option"]
+    os.environ["CSBUILD_USER_OPTION"] = yml["csbuild-option"] if "csbuild-option" in yml else ""
     print("User option: " + os.getenv("CSBUILD_USER_OPTION")) 
 
     return yml
