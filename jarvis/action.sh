@@ -76,11 +76,18 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout action_check
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "echo '$CSBUILD_USER_OPTION'"
 
+if [ "" == "$CSBUILD_USER_OPTION" ]; then
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
+                                            export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
+                                            export JARVIS_TARGET=$JARVIS_TARGET; \
+                                            python3 $JARVIS_WORKSPACE/JARVIS/main.py"
+else
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
                                             export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
                                             export CSBUILD_USER_OPTION='$CSBUILD_USER_OPTION'; \
                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
+fi                                            
 
 
 retval=$?
