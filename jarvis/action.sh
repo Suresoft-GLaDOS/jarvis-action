@@ -74,14 +74,12 @@ echo "JARVIS clone"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout action_check; git pull"
 
-# docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
-#                                             export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
-#                                             export JARVIS_TARGET=$JARVIS_TARGET; \
-#                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
-
-docker exec -iu 0 jarvis-ubuntu20.04 bash -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
-                                            $JARVIS_WORKSPACE/scripts/setenv_docker.sh; \
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
+                                            export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
+                                            export JARVIS_TARGET=$JARVIS_TARGET; \
+                                            export CSBUILD_USER_OPTION=$CSBUILD_USER_OPTION; \
                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
+
 
 retval=$?
 # do_something $retval
