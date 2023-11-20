@@ -55,7 +55,7 @@ def modify_commit_msg(diff_list, rule_info_dict):
         print("----------------------------------------\n")
         # gpt에게 설명 요청
         response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4-1106-preview",
         messages=messages,
         )
 
