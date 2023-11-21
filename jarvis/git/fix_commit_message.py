@@ -35,7 +35,7 @@ def modify_commit_msg(diff, rule_info_dict):
 
     print("Sending...\n")
     print("[+] target: ", diff)
-    print("[+] rule : ", str(rule_info_dict))
+    # print("[+] rule : ", str(rule_info_dict))
 
     violated_rule_in_file = rule_info_dict[diff]
     print("[+] rule in this file : ", str(violated_rule_in_file))    
