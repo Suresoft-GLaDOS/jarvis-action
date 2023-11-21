@@ -72,7 +72,7 @@ def _gen_rule_info(rule_info_dict):
     body += _open_collapsed_section("Found violations by STATIC")
 
     for k, v in rule_info_dict.items():
-        body += f"{k}: {v} violated.\n"
+        body += f"{str(v)} violated.\n"
 
     body+=_close_collapsed_section()
     return body
@@ -93,6 +93,24 @@ def _gen_patch_info(diff_list):
 
     return body
 
+
+def _gen_patch_expl_info(diff_list, rule_info):
+    output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
+
+    body = f"{CONTOUR_LINE} Violation fixed by jarvis\n"
+    body += _open_collapsed_section("plausible patch diff info")
+    
+    for diff in diff_list:
+        print("Diff: " + diff)
+        with open(diff, "r") as f:
+            code = f.read()
+        expl = modify_commit_msg(diff, rule_info)
+        print("Explanation: " + expl)
+        body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n{expl}\n{CONTOUR_LINE}\n"
+
+    body += _close_collapsed_section()
+
+    return body
 
 def generate_issue_body():
     '''
@@ -115,10 +133,10 @@ def generate_issue_body():
 
     patch_info = ""
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
-    patch_info = _gen_patch_info(diff_list)
+    patch_info = _gen_patch_expl_info(diff_list, info)
     
-    explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
-    body = f"{summary}{info}{file_info}{patch_info}{explanation}"
+    # explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
+    body = f"{summary}{info}{file_info}{patch_info}"
     with open(os.path.join(output_dir, "issue_body"), "w") as f:
         f.write(body)
 

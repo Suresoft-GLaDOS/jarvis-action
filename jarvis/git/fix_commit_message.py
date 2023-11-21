@@ -17,7 +17,7 @@ base_messages = [
     }
 ]
 
-def modify_commit_msg(diff_list, rule_info_dict):
+def modify_commit_msg(diff, rule_info_dict):
     # get Open API Key
     load_dotenv()
     openai.api_key= os.getenv("OPENAI_API_KEY")
@@ -32,37 +32,39 @@ def modify_commit_msg(diff_list, rule_info_dict):
     issue_msg = ""
 
     print("Rule info dict: " + str(rule_info_dict))
-    
-    for diff in diff_list:
-        print("Sending...\n")
-        print("[+] target: ", diff)
-        print("[+] rule : ", str(rule_info_dict))
 
-        with open(diff, "r+") as f:
-            diff_contents = f.read()
+    print("Sending...\n")
+    print("[+] target: ", diff)
+    print("[+] rule : ", str(rule_info_dict))
 
-        print("\n[+] diff_contents : \n\n", diff_contents)
+    violated_rule_in_file = rule_info_dict[diff]
+    print("[+] rule in this file : ", str(violated_rule_in_file))    
 
-        # diff 파일 설명을 위한 messages 구성
-        messages = base_messages + \
-        [{"role": "user",
-            "content": 
-            "Rule:" f"{str(rule_info_dict)}" "\n"
-            "The next contents are from a diff file.\n"
-            f"{diff_contents}"
-        }]
+    with open(diff, "r+") as f:
+        diff_contents = f.read()
 
-        print("----------------------------------------\n")
-        # gpt에게 설명 요청
-        response = openai.ChatCompletion.create(
-        model="gpt-4-1106-preview",
-        messages=messages,
-        )
+    print("\n[+] diff_contents : \n\n", diff_contents)
 
-        issue_msg += response.choices[0].message.content
-        issue_msg += "\n"
-        print(response.choices[0].message.content)
-        print("=====================================================\n\n")
+    # diff 파일 설명을 위한 messages 구성
+    messages = base_messages + \
+    [{"role": "user",
+        "content": 
+        "Rule:" f"{str(violated_rule_in_file)}" "\n"
+        "The next contents are from a diff file.\n"
+        f"{diff_contents}"
+    }]
+
+    print("----------------------------------------\n")
+    # gpt에게 설명 요청
+    response = openai.ChatCompletion.create(
+    model="gpt-4-1106-preview",
+    messages=messages,
+    )
+
+    issue_msg += response.choices[0].message.content
+    issue_msg += "\n"
+    print(response.choices[0].message.content)
+    print("=====================================================\n\n")
 
     return issue_msg
 
