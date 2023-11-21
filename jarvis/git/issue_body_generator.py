@@ -133,7 +133,7 @@ def generate_issue_body():
 
     patch_info = ""
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
-    patch_info = _gen_patch_expl_info(diff_list, info)
+    patch_info = _gen_patch_expl_info(diff_list, rule_info_dict)
     
     # explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
     body = f"{summary}{info}{file_info}{patch_info}"
