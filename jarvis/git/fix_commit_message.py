@@ -22,6 +22,7 @@ def modify_commit_msg(diff, rule_info_dict):
     load_dotenv()
     openai.api_key= os.getenv("OPENAI_API_KEY")
     JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
+    JARVIS_TARGET= os.getenv("JARVIS_TARGET")
     THRESHOLD = os.getenv("THRESHOLD", None)
     print(f"{JARVIS_WORKSPACE}/openai/openai_key")
     with open(f"{JARVIS_WORKSPACE}/openai/openai_key", "r") as f:
@@ -37,7 +38,8 @@ def modify_commit_msg(diff, rule_info_dict):
     print("[+] target: ", diff)
     print("[+] rule : ", str(rule_info_dict))
 
-    violated_rule_in_file = rule_info_dict["/home/workspace" + diff.replace(".diff", "")]
+    print(diff.replace(".diff", "").replace("outputs", JARVIS_TARGET))
+    violated_rule_in_file = rule_info_dict[diff.replace(".diff", "").replace("outputs", JARVIS_TARGET)]
     print("[+] rule in this file : ", str(violated_rule_in_file))    
 
     with open(diff, "r+") as f:

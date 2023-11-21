@@ -43,7 +43,7 @@ def _gen_diff_list():
 def _gen_file_info():
     body = f"{CONTOUR_LINE}Violated file list:\n"
     project_json_list = glob.glob(f"{JARVIS_WORKSPACE}/JARVIS/workspace{JARVIS_TARGET}/.staticdata/*/project.json")
-    print(f"{JARVIS_WORKSPACE}/JARVIS/{JARVIS_TARGET}/.staticdata/*/project.json")
+    print(f"{JARVIS_WORKSPACE}/JARVIS{JARVIS_TARGET}/.staticdata/*/project.json")
     print(project_json_list)
 
     source_dict_list = []
