@@ -39,7 +39,7 @@ def modify_commit_msg(diff, rule_info_dict):
     print("[+] rule : ", str(rule_info_dict))
 
     print(diff.replace(".diff", "").replace("outputs", JARVIS_TARGET))
-    violated_rule_in_file = rule_info_dict[diff.replace(".diff", "").replace("outputs", JARVIS_TARGET)]
+    violated_rule_in_file = rule_info_dict[diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET)]
     print("[+] rule in this file : ", str(violated_rule_in_file))    
 
     with open(diff, "r+") as f:
