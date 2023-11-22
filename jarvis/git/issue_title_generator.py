@@ -23,9 +23,9 @@ def generate_issue_title():
         rule_list = list(rule_info_dict.keys())
 
     if len(rule_list) > 1:
-        issue_title = f"Violated rule {rule_list[0]} etc."
+        issue_title = f"Violated rule {rule_info_dict[rule_list[0]][0]} etc."
     elif len(rule_list) == 1:
-        issue_title = f"Violated rule {rule_list[0]}"
+        issue_title = f"Violated rule {rule_info_dict[rule_list[0]][0]}"
     else: # Should not happen
         issue_title = f"[CRITICAL] No violated rule"
 
