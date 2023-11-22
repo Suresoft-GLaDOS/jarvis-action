@@ -32,7 +32,7 @@ def construct_pr_info():
 def _gen_diff_list():
     output_dir = ACTION_TEMP_DIR
     print(f"Output temp dir: {output_dir}")
-    diff_list=(glob.glob(f"{output_dir}/**/*.diff", recursive=True))
+    diff_list=glob.glob(f"{output_dir}/**/*.diff", recursive=True)
     print(diff_list)
 
     return diff_list
