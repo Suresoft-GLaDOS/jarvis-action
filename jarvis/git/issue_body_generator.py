@@ -107,7 +107,7 @@ def _gen_patch_expl_info(diff_list, rule_info):
             code = f.read()
         expl = modify_commit_msg(diff, rule_info)
         print("Explanation: " + expl)
-        body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n{expl}\n{CONTOUR_LINE}\n"
+        body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n{expl}\n"
 
     body += _close_collapsed_section()
 
@@ -137,7 +137,7 @@ def generate_issue_body():
     patch_info = _gen_patch_expl_info(diff_list, rule_info_dict)
     
     # explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
-    body = f"{summary}{file_info}{patch_info}"
+    body = f"{summary}{info}{file_info}{patch_info}"
     with open(os.path.join(output_dir, "issue_body"), "w") as f:
         f.write(body)
 
