@@ -73,7 +73,7 @@ def _gen_rule_info(rule_info_dict):
     body += _open_collapsed_section("Found violations by STATIC")
 
     for k, v in rule_info_dict.items():
-        body += f"{str(v)} violated.\n"
+        body += f"{v[0]} violated.\n"
 
     body+=_close_collapsed_section()
     return body
@@ -137,7 +137,7 @@ def generate_issue_body():
     patch_info = _gen_patch_expl_info(diff_list, rule_info_dict)
     
     # explanation = f"{CONTOUR_LINE}{modify_commit_msg(diff_list, rule_info_dict)}"
-    body = f"{summary}{info}{file_info}{patch_info}"
+    body = f"{summary}{file_info}{patch_info}"
     with open(os.path.join(output_dir, "issue_body"), "w") as f:
         f.write(body)
 
