@@ -32,7 +32,7 @@ def construct_pr_info():
 def _gen_diff_list():
     output_dir = ACTION_TEMP_DIR
     print(f"Output temp dir: {output_dir}")
-    diff_list = glob.glob(f"{output_dir}/*.diff")
+    diff_list=(glob.glob(f"{output_dir}/**/*.diff", recursive=True))
     print(diff_list)
 
     return diff_list
@@ -50,8 +50,8 @@ def create_pull_request(patch_branch):
 def run():
     print(f"[DEBUG] create pr", flush=True)
 
-    patch_path = f"{ACTION_TEMP_DIR}/fix_violation.patch"
-    print(f"Patch path: {patch_path}")
+    # patch_path = f"{ACTION_TEMP_DIR}/fix_violation.patch"
+    # print(f"Patch path: {patch_path}")
     
     os.system("git clean -xdf")
     os.system(f"git checkout {GITHUB_REF_NAME}")
