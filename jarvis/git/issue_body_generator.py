@@ -73,7 +73,8 @@ def _gen_rule_info(rule_info_dict):
     # body += _open_collapsed_section("Found violations by STATIC")
 
     for k, v in rule_info_dict.items():
-        body += f"{v[0]} violated.\n"
+        no_nl = v[0].replace("\n", "")
+        body += f"{no_nl} violated.\n"
         body += "\n"
 
     # body+=_close_collapsed_section()
