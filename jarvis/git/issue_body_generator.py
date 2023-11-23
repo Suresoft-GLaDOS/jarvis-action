@@ -75,7 +75,6 @@ def _gen_rule_info(rule_info_dict):
     for k, v in rule_info_dict.items():
         no_nl = v[0].replace("\n", "")
         body += f"{no_nl} violated.\n"
-        body += "\n"
 
     # body+=_close_collapsed_section()
     return body

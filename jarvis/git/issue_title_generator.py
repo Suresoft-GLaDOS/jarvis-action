@@ -3,6 +3,7 @@ import json
 
 JARVIS_OUTPUT_DIR = os.getenv("JARVIS_OUTPUT_DIR")
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
+TARGET_REPO_NAME = os.getenv("TARGET_REPO_NAME")
 
 def generate_issue_title():
     '''
@@ -11,6 +12,9 @@ def generate_issue_title():
     '''
     print(f"[DEBUG] create issue title", flush=True)
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
+
+    prefix_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", JARVIS_WORKSPACE)
+    print(f"Prefix: {prefix_dir}")
 
     with open(f"{output_dir}/violated_rules.json", "r") as rules:
         rule_info = json.load(rules)
@@ -21,11 +25,12 @@ def generate_issue_title():
         print(type(rule_info))
         print(rule_info_dict)
         rule_list = list(rule_info_dict.keys())
+        file_list = list(rule_info_dict.keys())
 
     if len(rule_list) > 1:
-        issue_title = f"Violated rule {rule_info_dict[rule_list[0]][0]} etc."
+        issue_title = f"Violated rule {rule_list[0].replace(prefix_dir, '')} etc."
     elif len(rule_list) == 1:
-        issue_title = f"Violated rule {rule_info_dict[rule_list[0]][0]}"
+        issue_title = f"Violated rule {rule_list[0].replace(prefix_dir, '')}"
     else: # Should not happen
         issue_title = f"[CRITICAL] No violated rule"
 
