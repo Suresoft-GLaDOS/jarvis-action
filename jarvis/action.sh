@@ -56,7 +56,7 @@ docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.0
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_WORKSPACE" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd $JARVIS_WORKSPACE; git add .; git commit -m 'newline'"
+docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd $JARVIS_WORKSPACE; find . -type f -exec dos2unix {} \;"
 
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
 

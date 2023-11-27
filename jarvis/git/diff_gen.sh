@@ -5,8 +5,6 @@ echo $JARVIS_WORKSPACE/JARVIS/workspace/home/workspace/$TARGET_REPO_NAME
 
 mkdir patches
 
-# find . -type f -exec dos2unix {} \;
-
 # 현재 변경 사항이 있는 파일 목록 가져옴.
 files=$(git diff --name-only)
 ​
