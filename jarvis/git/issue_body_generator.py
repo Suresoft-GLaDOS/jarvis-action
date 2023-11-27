@@ -35,7 +35,7 @@ def _gen_diff_list():
     output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
     print(f"Output dir: {output_dir}")
     # diff_list = glob.glob(f"{output_dir}/*.diff")
-    diff_list=(glob.glob(f"{output_dir}/**/*.diff", recursive=True))
+    diff_list=(glob.glob(f"{output_dir}/**/*.c.diff", recursive=True))
     print(diff_list)
 
     return diff_list
