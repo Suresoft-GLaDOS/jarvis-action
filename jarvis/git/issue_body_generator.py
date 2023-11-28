@@ -108,8 +108,9 @@ def _gen_patch_expl_info(diff_list, rule_info):
             code = f.read()
         expl = modify_commit_msg(diff, rule_info)
         print("Explanation: " + expl)
-        body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n{expl}\n"
-        break # To debug
+        if expl is not "":
+            body += f"{CONTOUR_LINE}{CODE_BLOCK} {CODE_BLOCK_FORMAT}\n{code}\n{CODE_BLOCK}\n{expl}\n"
+            break # To debug
 
     body += _close_collapsed_section()
 

@@ -39,34 +39,39 @@ def modify_commit_msg(diff, rule_info_dict):
     # print("[+] rule : ", str(rule_info_dict))
 
     print(diff.replace(".diff", "").replace("outputs", JARVIS_TARGET))
-    violated_rule_in_file = rule_info_dict[diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET)]
-    # print("[+] rule in this file : ", str(violated_rule_in_file))    
 
-    with open(diff, "r+") as f:
-        diff_contents = f.read()
+    try:
+        violated_rule_in_file = rule_info_dict[diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET)]
+        # print("[+] rule in this file : ", str(violated_rule_in_file))    
+    
+        with open(diff, "r+") as f:
+            diff_contents = f.read()
 
-    print("\n[+] diff_contents : \n\n", diff_contents)
+        print("\n[+] diff_contents : \n\n", diff_contents)
 
-    # diff 파일 설명을 위한 messages 구성
-    messages = base_messages + \
-    [{"role": "user",
-        "content": 
-        "Rule:" f"{str(violated_rule_in_file)}" "\n"
-        "The next contents are from a diff file.\n"
-        f"{diff_contents}"
-    }]
+        # diff 파일 설명을 위한 messages 구성
+        messages = base_messages + \
+        [{"role": "user",
+            "content": 
+            "Rule:" f"{str(violated_rule_in_file)}" "\n"
+            "The next contents are from a diff file.\n"
+            f"{diff_contents}"
+        }]
 
-    print("----------------------------------------\n")
-    # gpt에게 설명 요청
-    response = openai.ChatCompletion.create(
-    model="gpt-4-1106-preview",
-    messages=messages,
-    )
+        print("----------------------------------------\n")
+        # gpt에게 설명 요청
+        response = openai.ChatCompletion.create(
+        model="gpt-4-1106-preview",
+        messages=messages,
+        )
 
-    issue_msg += response.choices[0].message.content
-    issue_msg += "\n"
-    print(response.choices[0].message.content)
-    print("=====================================================\n\n")
+        issue_msg += response.choices[0].message.content
+        issue_msg += "\n"
+        print(response.choices[0].message.content)
+        print("=====================================================\n\n")
 
-    return issue_msg
-
+        return issue_msg
+    
+    except KeyError:
+        print("It wasn't fixed. It is just new line change.")
+        return ""
