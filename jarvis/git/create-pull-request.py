@@ -45,6 +45,7 @@ def run():
     
     os.system("git clean -xdf")
     os.system(f"git checkout {GITHUB_REF_NAME}")
+    # os.system("find . -type f -exec dos2unix {} \;")
     os.system("git checkout .")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"

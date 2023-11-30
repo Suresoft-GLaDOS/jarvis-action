@@ -7,6 +7,7 @@ mkdir patches
 
 # 현재 변경 사항이 있는 파일 목록 가져옴.
 files=$(git diff --name-only)
+find . -type f -exec dos2unix {} \;
 ​
 # 각 파일별로 diff를 생성합니다.
 for file in $files; do
