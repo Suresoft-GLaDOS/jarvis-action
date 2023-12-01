@@ -47,6 +47,13 @@ def create_pull_request(patch_branch):
     os.system(pr_command)
 
 
+def py_dos2unix(inf):
+    with open(inf, 'rt', encoding='UTF8',  errors='ignore') as f:
+        text = f.read().replace("r\r\n", "r\n")
+    with open(inf, 'wt', encoding='UTF8',  errors='ignore') as f:
+        f.write(text)
+
+
 def run():
     print(f"[DEBUG] create pr", flush=True)
 
@@ -66,6 +73,7 @@ def run():
         print(diff)
         print(diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET))
         os.system(f"dos2unix {diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET)}")
+        py_dos2unix(diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET))
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
