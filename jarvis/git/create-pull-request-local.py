@@ -71,9 +71,9 @@ def run():
     diff_list = _gen_diff_list()
     for diff in diff_list:
         print(diff)
-        print(diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET))
-        os.system(f"dos2unix {diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET)}")
-        py_dos2unix(diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET))
+        # print(diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET))
+        # os.system(f"dos2unix {diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET)}")
+        # py_dos2unix(diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET))
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
