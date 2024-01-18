@@ -15,9 +15,6 @@ runs:
     - name: Set permissions as executable
       run: chmod +x -R $GITHUB_ACTION_PATH
       shell: bash
-    - name: Write shell script to set env var
-      run: python3 $GITHUB_ACTION_PATH/jarvis/setenv_writters.py
-      shell: bash
     - name: Run action
       run: $GITHUB_ACTION_PATH/jarvis/action.sh
       shell: bash
