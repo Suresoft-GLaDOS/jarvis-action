@@ -18,6 +18,7 @@ echo $TOKEN > $GITHUB_ACTION_PATH/token.txt
 echo "[DEBUG] OPENAI_PATH: $OPENAI_PATH"
 
 export JARVIS_TARGET="$JARVIS_WORKSPACE/$TARGET_REPO_NAME"
+echo "JARVIS_TARGET: $JATVIS_TARGET"
 
 docker build -t ubuntu20.04_cppcheck $GITHUB_ACTION_PATH
 docker run -d --name jarvis_cppcheck-ubuntu20.04 -u jarvis:jarvis -i ubuntu20.04_cppcheck
@@ -41,16 +42,15 @@ echo "mkdir test"
 
 docker cp "$OPENAI_PATH" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/token.txt" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/ 
-docker cp "$CSBUILD_PATH/repo_token.txt" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/ 
-docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
-docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
+# docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
+# docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_WORKSPACE" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
 
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd $JARVIS_TARGET; find . -type f -exec dos2unix {} \;"
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd $JARVIS_TARGET; git add .; git commit -m 'init'"
 
-docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
+# docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 echo $ACTION_CALL
 
 retval=$?
