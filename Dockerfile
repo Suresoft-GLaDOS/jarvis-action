@@ -11,7 +11,7 @@ RUN apt-get update && \
 
 RUN apt update
 RUN apt install -y vim binutils gcc g++ make python3 git
-RUN apt-get -y install python3-pip dos2unix
+RUN apt-get -y install python3-pip
 RUN apt-get -y install dos2unix
 RUN apt-get -y install autoconf pkg-config libtool
 RUN apt-get -y install cppcheck
