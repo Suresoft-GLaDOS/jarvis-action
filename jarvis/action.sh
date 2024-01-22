@@ -20,7 +20,8 @@ echo "[DEBUG] OPENAI_PATH: $OPENAI_PATH"
 echo "TARGET_REPO_NAME: $TARGET_REPO_NAME"
 
 echo JARVIS_TARGET=$JARVIS_WORKSPACE/$TARGET_REPO_NAME
-echo "JARVIS_TARGET: $JATVIS_TARGET"
+export JARVIS_TARGET=$JARVIS_WORKSPACE/$TARGET_REPO_NAME
+echo "JARVIS_TARGET: $JARVIS_TARGET"
 
 docker build -t ubuntu20.04_cppcheck $GITHUB_ACTION_PATH
 docker run -d --name jarvis_cppcheck-ubuntu20.04 -u jarvis:jarvis -i ubuntu20.04_cppcheck
