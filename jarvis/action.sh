@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo $GITHUB_ACTION_PATH
-echo 
+source $GITHUB_ACTION_PATH/jarvis/env_sh/setenv.sh
+source $GITHUB_ACTION_PATH/jarvis/env_sh/setenv_yml.sh
 
 retval=$?
 if [ $retval -ne 0 ]; then
