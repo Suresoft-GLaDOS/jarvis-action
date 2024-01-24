@@ -45,15 +45,8 @@ echo "mkdir test"
 
 docker cp "$OPENAI_PATH" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/token.txt" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/ 
-# docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/git_config.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
-# docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_WORKSPACE" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
-
-# docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd $JARVIS_TARGET; find . -name '*.c' -print | xargs dos2unix" 
-# docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd $JARVIS_TARGET; git add .; git commit -m 'init'"
-
-# docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
 echo $ACTION_CALL
 
 retval=$?
@@ -108,16 +101,6 @@ python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py
 echo "python3 test"
 
 # docker rm -f jarvis-ubuntu20.04 
-
-# docker exec -itu 0 jarvis-ubuntu20.04 sh -c "sh /home/exec_test/docker_scripts/setenv.sh"
-
-# retval=$?
-# # do_something $retval
-# if [ $retval -ne 0 ]; then
-#     echo "Return code was not zero but $retval"
-# fi
-
-# echo "sh test"
 
 
 
