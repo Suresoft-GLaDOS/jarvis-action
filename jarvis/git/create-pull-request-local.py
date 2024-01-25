@@ -75,7 +75,7 @@ def run():
         # os.system(f"dos2unix {diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET)}")
         target_path = GITHUB_WORKSPACE + diff.split("outputs")[1].replace('.diff', '')
         print(target_path)
-        py_dos2unix(target_path)
+        # py_dos2unix(target_path)
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
