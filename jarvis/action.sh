@@ -14,7 +14,8 @@ echo "[DEBUG] GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
 echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
 echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
 echo $GITHUB_ACTION_PATH/token.txt
-echo "export TOKEN=$TOKEN" > $GITHUB_ACTION_PATH/token.txt
+echo $TOKEN > token.txt
+echo "export TOKEN=$TOKEN; git clone https://$TOKEN@github.com/$GITHUB_REPOSITORY.git" > $GITHUB_ACTION_PATH/token.sh
 
 echo "[DEBUG] OPENAI_PATH: $OPENAI_PATH"
 echo "TARGET_REPO_NAME: $TARGET_REPO_NAME"
@@ -44,6 +45,7 @@ fi
 echo "mkdir test"
 
 docker cp "$OPENAI_PATH" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/openai/
+docker cp "$GITHUB_ACTION_PATH/token.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
 docker cp "$GITHUB_ACTION_PATH/token.txt" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/ 
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_WORKSPACE" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
