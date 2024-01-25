@@ -62,6 +62,8 @@ docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "git clone http://10.10.10.7
 
 echo "JARVIS clone"
 
+docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "$JARVIS_WORKSPACE/token.sh"
+
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd JARVIS; git checkout cppcheck; git pull"
 
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
