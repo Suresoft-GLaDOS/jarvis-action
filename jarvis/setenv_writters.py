@@ -73,6 +73,7 @@ export JARVIS_WORKSPACE="{JARVIS_WORKSPACE}"
 export CSBUILD_PATH="{os.getenv("CSBUILD_PATH")}"
 export OPENAI_PATH="{os.getenv("OPENAI_PATH")}"
 export CSBUILD_USER_OPTION="{os.getenv("CSBUILD_USER_OPTION")}"
+export INIT_PATH="{os.getenv("INIT_PATH")}"
 
                         """
         f.write(setenv_yml_data)
@@ -169,6 +170,7 @@ def _parse_yaml():
     os.environ["CSBUILD_PATH"] = yml["csbuild-path"]
     os.environ["OPENAI_PATH"] = yml["openai-path"]
     os.environ["CSBUILD_USER_OPTION"] = yml["csbuild-option"] if "csbuild-option" in yml else ""
+    os.environ["INIT_PATH"] = yml["pylint-init-path"] if "pylint-init-path" in yml else ""
     print("User option: " + os.getenv("CSBUILD_USER_OPTION")) 
 
     return yml

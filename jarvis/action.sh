@@ -56,9 +56,6 @@ docker cp "$GITHUB_ACTION_PATH/jarvis/env_sh/setenv_docker.sh" jarvis-ubuntu20.0
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_WORKSPACE" jarvis-ubuntu20.04:$JARVIS_WORKSPACE/
 
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd $JARVIS_TARGET; find . -type f -exec dos2unix {} \;"
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd $JARVIS_TARGET; git add .; git commit -m 'init'"
-
 export CSBUILD_DOCKER="$JARVIS_WORKSPACE/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin"
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "$JARVIS_WORKSPACE/scripts/setenv_docker.sh"
@@ -79,18 +76,11 @@ docker exec -iu 0 jarvis-ubuntu20.04 sh -c "cd JARVIS; git checkout master; git 
 
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "echo '$CSBUILD_USER_OPTION'"
 
-if [ "" == "$CSBUILD_USER_OPTION" ]; then
-echo "Do not use csbuild option"
-docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
-                                            export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
-                                            export JARVIS_TARGET=$JARVIS_TARGET; \
-                                            python3 $JARVIS_WORKSPACE/JARVIS/main.py"
-else
-echo "Use csbuild option"
 docker exec -iu 0 jarvis-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
                                             export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
                                             export CSBUILD_USER_OPTION='$CSBUILD_USER_OPTION'; \
+                                            export INIT_PATH='$INIT_PATH'; \
                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
 fi                                            
 
@@ -121,7 +111,6 @@ pip install gitpython
 
 cd $GITHUB_WORKSPACE
 echo $GITHUB_WORKSPACE
-find . -type f -exec dos2unix {} \;
 
 python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py                                            
 
