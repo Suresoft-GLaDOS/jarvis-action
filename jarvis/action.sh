@@ -94,7 +94,6 @@ pip install gitpython
 
 cd $GITHUB_WORKSPACE
 echo $GITHUB_WORKSPACE
-find . -type f -exec dos2unix {} \;
 
 python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py                                            
 
