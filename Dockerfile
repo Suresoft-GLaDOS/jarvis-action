@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+ARG llvmver=10
 
 ENV ACTION_CALL=TRUE
 ENV PATH=/home/workspace/tbeg/apps/csbuild-ubuntu-20.04_v1.2.0/bin:$PATH
@@ -15,7 +16,38 @@ RUN apt-get -y install python3-pip
 RUN apt-get -y install autoconf pkg-config libtool
 RUN apt-get -y install cppcheck
 RUN apt-get -y install dos2unix
-RUN apt -y install clang
+RUN apt-get update \
+    && apt-get install -y \
+    software-properties-common \
+    gnupg \
+    # Needed for repo access
+    apt-transport-https \
+    ca-certificates
+
+ADD llvm.list /
+ADD llvm-snapshot.gpg.key /
+
+# Install pre-reqs
+RUN  mv llvm.list /etc/apt/sources.list.d/ \
+    && apt-key add llvm-snapshot.gpg.key \
+    && rm llvm-snapshot.gpg.key \
+    && apt-get update \
+    && apt-get install -y \
+    build-essential \
+    # Install Tool
+    clang-$llvmver \
+    clang-tools-$llvmver \
+    clang-format-$llvmver \
+    python3-clang-$llvmver \
+    libfuzzer-$llvmver-dev \
+    lldb-$llvmver \
+    lld-$llvmver \
+    libc++-$llvmver-dev \
+    libc++abi-$llvmver-dev \
+    libomp-$llvmver-dev \
+    # Make an alias for the versioned executable
+    && ln -s /usr/bin/clang++-$llvmver /usr/bin/clang++ \
+    && ln -s /usr/bin/clang-$llvmver /usr/bin/clang
 
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
