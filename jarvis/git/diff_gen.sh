@@ -16,7 +16,7 @@ for file in $files; do
     mkdir -p "$JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
     rm -rf "$JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
     # git diff 결과를 파일에 저장
-    git diff -- "$file" > "$JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
+    git diff -- --ignore-space-at-eol "$file" > "$JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
     echo "Saved diff for $file to $JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
 done
 
