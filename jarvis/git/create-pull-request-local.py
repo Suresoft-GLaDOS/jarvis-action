@@ -47,12 +47,6 @@ def create_pull_request(patch_branch):
     os.system(pr_command)
 
 
-def py_dos2unix(inf):
-    with open(inf, 'rt', encoding='UTF8',  errors='ignore') as f:
-        text = f.read().replace("r\r\n", "r\n")
-    with open(inf, 'wt', encoding='UTF8',  errors='ignore') as f:
-        f.write(text)
-
 
 def run():
     print(f"[DEBUG] create pr", flush=True)
@@ -66,16 +60,11 @@ def run():
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
     os.system(f"git checkout -b {patch_branch}")
-    # print("find . -type f -exec dos2unix {{}} \;")
-    # os.system("find . -type f -exec dos2unix {{}} \;")
     diff_list = _gen_diff_list()
     for diff in diff_list:
         print(diff)
-        # print(diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET))
-        # os.system(f"dos2unix {diff.replace('.diff', '').replace('/outputs', JARVIS_TARGET)}")
         target_path = GITHUB_WORKSPACE + diff.split("outputs")[1].replace('.diff', '')
         print(target_path)
-        # py_dos2unix(target_path)
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
