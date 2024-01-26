@@ -14,6 +14,7 @@ RUN apt install -y vim binutils gcc g++ make python3 git
 RUN apt-get -y install python3-pip
 RUN apt-get -y install autoconf pkg-config libtool
 RUN apt-get -y install cppcheck
+RUN apt-get -y install dos2unix
 
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
