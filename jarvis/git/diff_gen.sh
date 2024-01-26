@@ -12,6 +12,7 @@ files=$(git diff --name-only)
 for file in $files; do
     # 경로에서 슬래시를 대시로 대체하여 파일명을 생성
     # diff_file="$(echo $file | sed 's/\//_/g').diff"
+    dos2unix $file
     echo "MKDIR $JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
     mkdir -p "$JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
     rm -rf "$JARVIS_WORKSPACE/JARVIS/workspace/outputs/$file.diff"
