@@ -41,6 +41,8 @@ RUN curl -SL https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0
     echo 'export PATH=/clang_14/bin:$PATH' >> ~/.bashrc && \
     echo 'export LD_LIBRARY_PATH=/clang_14/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
 
+RUN ln -s libclang.so libclang-14.so
+
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
