@@ -35,11 +35,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 #Getting prebuilt binary from llvm 
-RUN curl -SL https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.1/clang-16.0.1.src.tar.xz \
+RUN curl -SL https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.0/clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz \
     | tar -xJC . && \
-    mv clang-16.0.1.src.tar.xz clang_16 && \
-    echo 'export PATH=/clang_16/bin:$PATH' >> ~/.bashrc && \
-    echo 'export LD_LIBRARY_PATH=/clang_16/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+    mv clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04 clang_14 && \
+    echo 'export PATH=/clang_14/bin:$PATH' >> ~/.bashrc && \
+    echo 'export LD_LIBRARY_PATH=/clang_14/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
 
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
