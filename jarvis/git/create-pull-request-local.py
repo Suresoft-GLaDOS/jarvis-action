@@ -52,7 +52,7 @@ def run():
     # patch_path = f"{ACTION_TEMP_DIR}/fix_violation.patch"
     # print(f"Patch path: {patch_path}")
     
-    # os.system("git clean -xdf")
+    os.system("git clean -xdf")
     os.system(f"git checkout {GITHUB_REF_NAME}")
     os.system("git checkout .")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
@@ -69,6 +69,7 @@ def run():
         with open(target_path, 'wt', encoding='UTF8',  errors='ignore') as f:
             print("Write!")
             f.write(text)
+    for diff in diff_list:
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
