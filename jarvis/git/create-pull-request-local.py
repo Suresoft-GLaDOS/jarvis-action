@@ -33,8 +33,6 @@ def _gen_diff_list():
     output_dir = ACTION_TEMP_DIR
     print(f"Output temp dir: {output_dir}")
     diff_list=glob.glob(f"{output_dir}/**/*.diff", recursive=True)
-    print(diff_list)
-
     return diff_list
 
 
@@ -66,8 +64,10 @@ def run():
         target_path = GITHUB_WORKSPACE + diff.split("outputs")[1].replace('.diff', '')
         print('Target:' + target_path)
         with open(target_path, 'rt', encoding='UTF8',  errors='ignore') as f:
+            print("Replace!")
             text = f.read().replace("r\r\n", "r\n")
         with open(target_path, 'wt', encoding='UTF8',  errors='ignore') as f:
+            print("Write!")
             f.write(text)
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
