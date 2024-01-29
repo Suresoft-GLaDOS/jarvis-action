@@ -35,9 +35,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 #Getting prebuilt binary from llvm 
-RUN curl -SL https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.1/clang+llvm-16.0.1-powerpc64le-linux-ubuntu-20.04.tar.xz  \
+RUN curl -SL https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.1/clang-16.0.1.src.tar.xz \
     | tar -xJC . && \
-    mv clang+llvm-16.0.1-powerpc64le-linux-ubuntu-20.04.tar.xz clang_16 && \
+    mv clang-16.0.1.src.tar.xz clang_16 && \
     echo 'export PATH=/clang_16/bin:$PATH' >> ~/.bashrc && \
     echo 'export LD_LIBRARY_PATH=/clang_16/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
 
