@@ -56,8 +56,7 @@ def run():
     os.system(f"git checkout {GITHUB_REF_NAME}")
     os.system("git checkout .")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
-    patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
-    os.system(f"git checkout -b {patch_branch}")
+    
     diff_list = _gen_diff_list()
     for diff in diff_list:
         print('Diff:' + diff)
@@ -69,6 +68,10 @@ def run():
         with open(target_path, 'wt', encoding='UTF8',  errors='ignore') as f:
             print("Write!")
             f.write(text)
+
+    patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
+    os.system(f"git checkout -b {patch_branch}")
+    
     for diff in diff_list:
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
