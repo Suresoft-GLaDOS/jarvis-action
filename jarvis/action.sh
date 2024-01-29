@@ -58,6 +58,8 @@ fi
 
 echo "cp test"
 
+docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "ln -s /clang_14/lib/libclang.so /clang_14/lib/libclang-14.so"
+
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/kyham/JARVIS"
 
 echo "JARVIS clone"
