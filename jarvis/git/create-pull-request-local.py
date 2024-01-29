@@ -52,9 +52,9 @@ def run():
     # patch_path = f"{ACTION_TEMP_DIR}/fix_violation.patch"
     # print(f"Patch path: {patch_path}")
     
-    os.system("git clean -xdf")
+    # os.system("git clean -xdf")
     os.system(f"git checkout {GITHUB_REF_NAME}")
-    os.system("git checkout .")
+    # os.system("git checkout .")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
     
     diff_list = _gen_diff_list()
