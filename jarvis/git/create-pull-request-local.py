@@ -62,9 +62,13 @@ def run():
     os.system(f"git checkout -b {patch_branch}")
     diff_list = _gen_diff_list()
     for diff in diff_list:
-        print(diff)
+        print('Diff:' + diff)
         target_path = GITHUB_WORKSPACE + diff.split("outputs")[1].replace('.diff', '')
-        print(target_path)
+        print('Target:' + target_path)
+        with open(target_path, 'rt', encoding='UTF8',  errors='ignore') as f:
+            text = f.read().replace("r\r\n", "r\n")
+        with open(target_path, 'wt', encoding='UTF8',  errors='ignore') as f:
+            f.write(text)
         os.system(f"git apply < {diff}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
