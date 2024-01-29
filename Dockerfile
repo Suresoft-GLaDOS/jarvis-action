@@ -24,9 +24,13 @@ RUN apt-get update \
     apt-transport-https \
     ca-certificates
 
+RUN apt-get update && apt-get install -y \
+ xz-utils \
+ curl \
+ && rm -rf /var/lib/apt/lists/*
+
 RUN wget https://apt.llvm.org/llvm.sh \
-    chmod +x llvm.sh \
-    sudo ./llvm.sh 13
+    ./llvm.sh 13
 
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
