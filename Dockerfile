@@ -24,31 +24,6 @@ RUN apt-get update \
     apt-transport-https \
     ca-certificates
 
-ADD llvm.list /
-ADD llvm-snapshot.gpg.key /
-
-# Install pre-reqs
-RUN  mv llvm.list /etc/apt/sources.list.d/ \
-    && apt-key add llvm-snapshot.gpg.key \
-    && rm llvm-snapshot.gpg.key \
-    && apt-get update \
-    && apt-get install -y \
-    build-essential \
-    # Install Tool
-    clang-$llvmver \
-    clang-tools-$llvmver \
-    clang-format-$llvmver \
-    python3-clang-$llvmver \
-    libfuzzer-$llvmver-dev \
-    lldb-$llvmver \
-    lld-$llvmver \
-    libc++-$llvmver-dev \
-    libc++abi-$llvmver-dev \
-    libomp-$llvmver-dev \
-    # Make an alias for the versioned executable
-    && ln -s /usr/bin/clang++-$llvmver /usr/bin/clang++ \
-    && ln -s /usr/bin/clang-$llvmver /usr/bin/clang
-
 RUN type -p curl >/dev/null || (apt update && apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -57,6 +32,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
     && apt install gh -y
 
 RUN pip install python-dotenv openai pyfiglet gitpython
+RUN pip install clang libclang
 
 RUN useradd --home-dir /home/workspace jarvis
 
