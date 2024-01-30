@@ -14,7 +14,7 @@ JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
 # ACTION_TEMP_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_TARGET= os.getenv("JARVIS_TARGET")
-TARGET_WORKSPACE = os.path.join(JARVIS_WORKSPACE, "workspace", JARVIS_TARGET)
+TARGET_WORKSPACE = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", JARVIS_TARGET)
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
 GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE", "/mnt/d/iitp/IITP_JARVIS/jarvis_workspace/actions-runner/_work/JARVIS_demo/JARVIS_demo")
 
