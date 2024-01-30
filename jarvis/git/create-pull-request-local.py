@@ -74,14 +74,14 @@ def run():
     for diff in diff_list:
         os.system(f"git apply < {diff}")
 
-    # patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
-    # os.system(f"git checkout -b {patch_branch}")
-    # os.system(f"git add .")
-    # os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
-    # os.system(f"gh auth login --with-token < {GITHUB_ACTION_PATH}/token.txt")
-    # os.system(f"git push origin {patch_branch}")
-    # create_pull_request(patch_branch)
-    # os.system(f"git checkout {GITHUB_REF_NAME}")
+    patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
+    os.system(f"git checkout -b {patch_branch}")
+    os.system(f"git add .")
+    os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
+    os.system(f"gh auth login --with-token < {GITHUB_ACTION_PATH}/token.txt")
+    os.system(f"git push origin {patch_branch}")
+    create_pull_request(patch_branch)
+    os.system(f"git checkout {GITHUB_REF_NAME}")
     print("Just check")
 
 

@@ -3,28 +3,39 @@ import json
 import os
 import subprocess
 import datetime
+import glob
 
 
 GITHUB_REF_NAME = os.getenv("GITHUB_REF_NAME", None)
+GITHUB_ACTION_PATH = os.getenv("GITHUB_ACTION_PATH")
+
 
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
+# ACTION_TEMP_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_TARGET= os.getenv("JARVIS_TARGET")
+TARGET_WORKSPACE = os.path.join(JARVIS_WORKSPACE, "workspace", JARVIS_TARGET)
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
-with open(f"{JARVIS_WORKSPACE}/repo_token.txt", "r") as token:
-    TOKEN=token.readline().strip()
+GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE", "/mnt/d/iitp/IITP_JARVIS/jarvis_workspace/actions-runner/_work/JARVIS_demo/JARVIS_demo")
 
 PR_INFO = dict()
 
 
 def construct_pr_info():
-    with open(os.path.join(JARVIS_OUTPUT_DIR, "issue_link")) as f:
+    with open(os.path.join(JARVIS_WORKSPACE, "issue_link")) as f:
         PR_INFO["issue_link"] = f.read().strip()
     PR_INFO["issue_number"] = PR_INFO["issue_link"].split("/")[-1]
     
     print(f"[DEBUG] generate pr title", flush=True)
     pr_title = f"Fixed #{PR_INFO['issue_number']}"
     PR_INFO["title"] = pr_title
+
+
+def _gen_diff_list():
+    output_dir = JARVIS_OUTPUT_DIR
+    print(f"Output temp dir: {output_dir}")
+    diff_list=glob.glob(f"{output_dir}/**/*.diff", recursive=True)
+    return diff_list
 
 
 def create_pull_request(patch_branch):
@@ -36,31 +47,46 @@ def create_pull_request(patch_branch):
     os.system(pr_command)
 
 
+
 def run():
     print(f"[DEBUG] create pr", flush=True)
-    output_dir = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 
-    patch_path = f"{output_dir}/fix_violation.patch"
-    print(f"Patch path: {patch_path}")
+    # patch_path = f"{ACTION_TEMP_DIR}/fix_violation.patch"
+    # print(f"Patch path: {patch_path}")
     
-    os.system("git clean -xdf")
+    # os.system("git clean -xdf")
+    
+    # os.system("git checkout .")
+    os.chdir(TARGET_WORKSPACE)
     os.system(f"git checkout {GITHUB_REF_NAME}")
-
-    os.system("git checkout .")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
+    
+    # diff_list = _gen_diff_list()
+    # for diff in diff_list:
+    #     print('Diff:' + diff)
+    #     target_path = GITHUB_WORKSPACE + diff.split("outputs")[1].replace('.diff', '')
+    #     print('Target:' + target_path)
+    #     with open(target_path, 'rt', encoding='UTF8',  errors='ignore') as f:
+    #         print("Replace!")
+    #         text = f.read().replace("r\r\n", "r\n")
+    #     with open(target_path, 'wt', encoding='UTF8',  errors='ignore') as f:
+    #         print("Write!")
+    #         f.write(text)
+
+
+    
+    # for diff in diff_list:
+    #     os.system(f"git apply < {diff}")
+
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
     os.system(f"git checkout -b {patch_branch}")
-    os.system(f"git apply < {patch_path}")
     os.system(f"git add .")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
-    # remote = subprocess.check_output("git remote -v")
-    os.system(f"git remote remove origin")
-    os.system(f"git remote add origin https://{TOKEN}@github.com/{GITHUB_REPOSITORY}")
-    print(f"git remote add origin https://{TOKEN}@github.com/{GITHUB_REPOSITORY}")
     os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     os.system(f"git push origin {patch_branch}")
     create_pull_request(patch_branch)
     os.system(f"git checkout {GITHUB_REF_NAME}")
+    print("Just check")
 
 
 construct_pr_info()

@@ -95,13 +95,13 @@ docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$
 docker cp jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch $GITHUB_ACTION_PATH/jarvis/temp/    
 docker cp jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/ $GITHUB_ACTION_PATH/jarvis/temp/       
 
-python3 -m pip install --upgrade pip
-pip install gitpython
+# python3 -m pip install --upgrade pip
+# pip install gitpython
 
 cd $GITHUB_WORKSPACE
 echo $GITHUB_WORKSPACE
 
-python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py                                            
+# python3 $GITHUB_ACTION_PATH/jarvis/git/create-pull-request-local.py                                            
 
 echo "python3 test"
 
