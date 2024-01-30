@@ -65,8 +65,9 @@ def run():
     # os.system("git clean -xdf")
     
     # os.system("git checkout .")
+    TARGET_WORKSPACE = JARVIS_WORKSPACE + "/JARVIS" + "/workspace/" + JARVIS_TARGET
+    print("Declare Target workspace: " + TARGET_WORKSPACE)
     os.chdir(TARGET_WORKSPACE)
-    print("Target workspace: " + TARGET_WORKSPACE)
     os.system(f"git checkout {GITHUB_REF_NAME}")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
     
