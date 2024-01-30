@@ -90,7 +90,7 @@ def run():
     #     os.system(f"git apply < {diff}")
 
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
-    token = get_token()
+    token = get_token().replace("\n", "")
     print("Checkout new branch")
     os.system(f"git checkout -b {patch_branch}")
     print("Add")
