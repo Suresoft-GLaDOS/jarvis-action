@@ -99,7 +99,7 @@ def run():
     print("Commit")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
     # print("Login")
-    os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
+    # os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     print("Login with token")
     os.system(f"git remote remove origin; git remote add origin https://{token}@github.com/{GITHUB_REPOSITORY}; git push origin {patch_branch}")
     create_pull_request(patch_branch)
