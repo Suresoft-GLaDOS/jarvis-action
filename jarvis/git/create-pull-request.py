@@ -100,7 +100,7 @@ def run():
     # print("Login")
     os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     print("Login with token")
-    os.system(f"git config --global url.https://{token}N@github.com; git push origin {patch_branch}")
+    os.system(f"git config --global url.https://{token}@github.com; git push origin {patch_branch}")
     # create_pull_request(patch_branch)
     # os.system(f"git checkout {GITHUB_REF_NAME}")
     # print("Just check")
