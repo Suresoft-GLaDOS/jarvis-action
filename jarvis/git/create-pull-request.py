@@ -58,6 +58,7 @@ def run():
     
     # os.system("git checkout .")
     os.chdir(TARGET_WORKSPACE)
+    print("Target workspace: " + TARGET_WORKSPACE)
     os.system(f"git checkout {GITHUB_REF_NAME}")
     now = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
     
