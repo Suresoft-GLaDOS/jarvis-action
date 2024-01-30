@@ -47,6 +47,12 @@ def create_pull_request(patch_branch):
     os.system(pr_command)
 
 
+def get_token():
+    token = ""
+    with open(os.path.join(JARVIS_WORKSPACE, "token.txt"), "r") as f:
+        token = f.read()
+    return token
+
 
 def run():
     print(f"[DEBUG] create pr", flush=True)
@@ -80,9 +86,13 @@ def run():
     #     os.system(f"git apply < {diff}")
 
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
+    print("Checkout new branch")
     os.system(f"git checkout -b {patch_branch}")
+    print("Add")
     os.system(f"git add .")
+    print("Commit")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
+    print("Login")
     os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     print("Login with token")
     os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt; git push origin {patch_branch}")
