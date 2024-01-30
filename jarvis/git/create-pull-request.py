@@ -18,6 +18,7 @@ JARVIS_TARGET= os.getenv("JARVIS_TARGET")
 TARGET_WORKSPACE = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", JARVIS_TARGET)
 print("Declare Target workspace: " + TARGET_WORKSPACE)
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
+print("Github repository:" + GITHUB_REPOSITORY)
 GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE", "/mnt/d/iitp/IITP_JARVIS/jarvis_workspace/actions-runner/_work/JARVIS_demo/JARVIS_demo")
 
 PR_INFO = dict()
@@ -100,8 +101,8 @@ def run():
     # print("Login")
     os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     print("Login with token")
-    os.system(f"git config --global url.https://{token}@github.com; git push origin {patch_branch}")
-    # create_pull_request(patch_branch)
+    os.system(f"git remote remove origin; git remote add origin https://{token}@github.com/{GITHUB_REPOSITORY}; git push origin {patch_branch}")
+    create_pull_request(patch_branch)
     # os.system(f"git checkout {GITHUB_REF_NAME}")
     # print("Just check")
 
