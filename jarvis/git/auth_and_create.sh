@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo JARVIS_WORKSPACE=$JARVIS_WORKSPACE
+echo GITHUB_REPOSITORY=$GITHUB_REPOSITORY
 JARVIS_OUTPUT_DIR=$JARVIS_WORKSPACE/JARVIS/workspace/outputs
 
 git config --global --add safe.directory "$JARVIS_TARGET"
