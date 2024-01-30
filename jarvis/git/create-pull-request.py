@@ -11,6 +11,7 @@ GITHUB_ACTION_PATH = os.getenv("GITHUB_ACTION_PATH")
 
 
 JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
+print("Jarvis workspace env: " + JARVIS_WORKSPACE)
 # ACTION_TEMP_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_OUTPUT_DIR = os.path.join(JARVIS_WORKSPACE, "JARVIS", "workspace", "outputs")
 JARVIS_TARGET= os.getenv("JARVIS_TARGET")
