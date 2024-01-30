@@ -4,7 +4,7 @@ description: 'Auto fix to follow MISRA rule on the branch which triggers a workf
 inputs:
   token:
     description: 'GITHUB_TOKEN'
-    default: ${{ secrets.GITHUB_TOKEN }}
+    default: ${{ github.token }}
 
 runs:
   using: 'composite'
