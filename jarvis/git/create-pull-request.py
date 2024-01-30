@@ -85,9 +85,9 @@ def run():
     # for diff in diff_list:
     #     os.system(f"git apply < {diff}")
 
-    # patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
-    # print("Checkout new branch")
-    # os.system(f"git checkout -b {patch_branch}")
+    patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
+    print("Checkout new branch")
+    os.system(f"git checkout -b {patch_branch}")
     # print("Add")
     # os.system(f"git add .")
     # print("Commit")
