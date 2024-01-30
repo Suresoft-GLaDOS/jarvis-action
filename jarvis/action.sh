@@ -15,7 +15,7 @@ echo "[DEBUG] JARVIS_WORKSPACE: $JARVIS_WORKSPACE"
 echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
 echo $GITHUB_ACTION_PATH/token.txt
 echo $TOKEN > $GITHUB_ACTION_PATH/token.txt
-echo "export TOKEN=$TOKEN; git clone https://$TOKEN@github.com/$GITHUB_REPOSITORY.git" > $GITHUB_ACTION_PATH/token.sh
+echo "export TOKEN=$TOKEN; git config core.autocrlf; git clone https://$TOKEN@github.com/$GITHUB_REPOSITORY.git" > $GITHUB_ACTION_PATH/token.sh
 echo "cd $TARGET_REPO_NAME; git config --global url.https://$TOKEN@github.com" > $GITHUB_ACTION_PATH/set_url.sh
 
 echo "[DEBUG] OPENAI_PATH: $OPENAI_PATH"
