@@ -53,6 +53,7 @@ def get_token():
     token = ""
     with open(os.path.join(JARVIS_WORKSPACE, "token.txt"), "r") as f:
         token = f.read()
+    # print()
     return token
 
 
@@ -89,6 +90,7 @@ def run():
     #     os.system(f"git apply < {diff}")
 
     patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
+    token = get_token()
     print("Checkout new branch")
     os.system(f"git checkout -b {patch_branch}")
     print("Add")
@@ -96,9 +98,9 @@ def run():
     print("Commit")
     os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
     # print("Login")
-    # os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
+    os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
     print("Login with token")
-    os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt; git push origin {patch_branch}")
+    os.system(f"git config --global url.https://{token}N@github.com; git push origin {patch_branch}")
     # create_pull_request(patch_branch)
     # os.system(f"git checkout {GITHUB_REF_NAME}")
     # print("Just check")
