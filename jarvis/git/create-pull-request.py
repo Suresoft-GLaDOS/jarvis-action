@@ -85,21 +85,21 @@ def run():
     # for diff in diff_list:
     #     os.system(f"git apply < {diff}")
 
-    patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
-    print("Checkout new branch")
-    os.system(f"git checkout -b {patch_branch}")
-    print("Add")
-    os.system(f"git add .")
-    print("Commit")
-    os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
-    print("Login")
-    os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
-    print("Login with token")
-    os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt; git push origin {patch_branch}")
-    create_pull_request(patch_branch)
-    os.system(f"git checkout {GITHUB_REF_NAME}")
-    print("Just check")
+    # patch_branch = f"{GITHUB_REF_NAME}-auto-patch-{now}"
+    # print("Checkout new branch")
+    # os.system(f"git checkout -b {patch_branch}")
+    # print("Add")
+    # os.system(f"git add .")
+    # print("Commit")
+    # os.system(f"git commit -m \"Fixed automatically #{PR_INFO['issue_number']} by JARVIS\"")
+    # print("Login")
+    # os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt")
+    # print("Login with token")
+    # os.system(f"gh auth login --with-token < {JARVIS_WORKSPACE}/token.txt; git push origin {patch_branch}")
+    # create_pull_request(patch_branch)
+    # os.system(f"git checkout {GITHUB_REF_NAME}")
+    # print("Just check")
 
 
 construct_pr_info()
-# run()
+run()
