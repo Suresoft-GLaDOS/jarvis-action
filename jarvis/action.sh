@@ -16,7 +16,7 @@ echo "[DEBUG] GITHUB_TOKEN: $TOKEN"
 echo $GITHUB_ACTION_PATH/token.txt
 echo $TOKEN > $GITHUB_ACTION_PATH/token.txt
 echo "export TOKEN=$TOKEN; git clone https://$TOKEN@github.com/$GITHUB_REPOSITORY.git" > $GITHUB_ACTION_PATH/token.sh
-echo "git remote remove origin; git remote add origin https://$TOKEN@github.com/$GITHUB_REPOSITORY.git" > $GITHUB_ACTION_PATH/reset_remote.sh
+echo "cd $TARGET_REPO_NAME; git config --global url.https://$TOKEN@github.com" > $GITHUB_ACTION_PATH/set_url.sh
 
 echo "[DEBUG] OPENAI_PATH: $OPENAI_PATH"
 echo "TARGET_REPO_NAME: $TARGET_REPO_NAME"
@@ -47,7 +47,7 @@ echo "mkdir test"
 
 docker cp "$OPENAI_PATH" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/openai/
 docker cp "$GITHUB_ACTION_PATH/token.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
-docker cp "$GITHUB_ACTION_PATH/reset_remote.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
+docker cp "$GITHUB_ACTION_PATH/set_url.sh" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
 docker cp "$GITHUB_ACTION_PATH/token.txt" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/ 
 docker cp "$GITHUB_ACTION_PATH/jarvis/git/" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/scripts/
 docker cp "$GITHUB_WORKSPACE" jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/
@@ -67,7 +67,7 @@ docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "git clone http://10.10.10.7
 echo "JARVIS clone"
 
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "$JARVIS_WORKSPACE/token.sh"
-docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "$JARVIS_WORKSPACE/reset_remote.sh"
+docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "$JARVIS_WORKSPACE/set_url.sh"
 
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd JARVIS; git checkout cppcheck; git pull"
 
