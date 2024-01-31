@@ -20,6 +20,8 @@ base_messages = [
 def modify_commit_msg(diff, rule_info_dict):
     # get Open API Key
     load_dotenv()
+    print("Rule Info:")
+    print(rule_info_dict)
     openai.api_key= os.getenv("OPENAI_API_KEY")
     JARVIS_WORKSPACE = os.getenv("JARVIS_WORKSPACE")
     JARVIS_TARGET= os.getenv("JARVIS_TARGET")
