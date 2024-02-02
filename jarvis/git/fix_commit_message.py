@@ -44,7 +44,7 @@ def modify_commit_msg(diff, rule_info_dict):
 
     violated_rule_in_file = ""
 
-    for k, v in rule_info_dict:
+    for k, v in rule_info_dict.items():
         if k in diff.replace(".diff", "").replace("/outputs", JARVIS_TARGET):
             violated_rule_in_file = v
 
