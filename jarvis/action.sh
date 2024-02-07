@@ -60,8 +60,6 @@ fi
 
 echo "cp test"
 
-docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "ln -s /clang_14/lib/libclang.so /clang_14/lib/libclang-14.so"
-
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "git clone http://10.10.10.75:3000/kyham/JARVIS"
 
 echo "JARVIS clone"
@@ -69,7 +67,7 @@ echo "JARVIS clone"
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "$JARVIS_WORKSPACE/token.sh"
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "$JARVIS_WORKSPACE/set_url.sh"
 
-docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd JARVIS; git checkout cppcheck; git pull"
+docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd JARVIS; git checkout pylint; git pull"
 
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
                                             export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
