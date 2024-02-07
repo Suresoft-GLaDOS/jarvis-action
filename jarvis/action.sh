@@ -72,7 +72,7 @@ docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd JARVIS; git checkout pyl
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
                                             export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
-                                            export CHECKER=CPPCHECK; \
+                                            export CHECKER=PYLINT; \
                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
 
 retval=$?
