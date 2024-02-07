@@ -57,7 +57,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
     && apt update \
     && apt install gh -y
 
-RUN pip install python-dotenv openai pyfiglet gitpython
+RUN pip install python-dotenv openai pyfiglet gitpython pylint
 RUN pip install clang libclang
 
 RUN useradd --home-dir /home/workspace jarvis
