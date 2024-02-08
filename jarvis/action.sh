@@ -72,8 +72,8 @@ docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "cd JARVIS; git checkout pyl
 docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 sh -c "pip install -r $JARVIS_WORKSPACE/JARVIS/requirements.txt;\
                                             export JARVIS_WORKSPACE=$JARVIS_WORKSPACE; \
                                             export JARVIS_TARGET=$JARVIS_TARGET; \
-                                            export CHECKER=PYLINT; \
-                                            export INIT_PATH=tinydb; \
+                                            export CHECKER=$CHECKER; \
+                                            export LANGUAGE=$LANGUAGE; \
                                             python3 $JARVIS_WORKSPACE/JARVIS/main.py"
 
                                             # init path 설정도 jarvis.yml에 넣을 수 있게...

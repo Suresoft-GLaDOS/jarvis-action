@@ -72,6 +72,10 @@ export JARVIS_WORKSPACE="{JARVIS_WORKSPACE}"
 
 export CSBUILD_PATH="{os.getenv("CSBUILD_PATH")}"
 export OPENAI_PATH="{os.getenv("OPENAI_PATH")}"
+
+export CHECKER="{os.getenv("CHECKER")}"
+export LANGUAGE="{os.getenv("LANGUAGE")}"
+
 export CSBUILD_USER_OPTION="{os.getenv("CSBUILD_USER_OPTION")}"
 
                         """
@@ -168,6 +172,8 @@ def _parse_yaml():
     os.environ["JARVIS_WORKSPACE"] = yml["workspace"] if "workspace" in yml else ""
     os.environ["CSBUILD_PATH"] = yml["csbuild-path"]
     os.environ["OPENAI_PATH"] = yml["openai-path"]
+    os.environ["CHECKER"] = yml["checker"]
+    os.environ["LANGUAGE"] = yml["language"]
     os.environ["CSBUILD_USER_OPTION"] = yml["csbuild-option"] if "csbuild-option" in yml else ""
     print("User option: " + os.getenv("CSBUILD_USER_OPTION")) 
 
