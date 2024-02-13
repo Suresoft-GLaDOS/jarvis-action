@@ -95,8 +95,7 @@ docker exec -iu 0 jarvis_cppcheck-ubuntu20.04 bash -c "export JARVIS_WORKSPACE=$
                                             export GITHUB_REPOSITORY=$GITHUB_REPOSITORY; \
                                             export TARGET_REPO_NAME=$TARGET_REPO_NAME;\
                                             $JARVIS_WORKSPACE/scripts/git/auth_and_create.sh"
-
-docker cp jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/fix_violation.patch $GITHUB_ACTION_PATH/jarvis/temp/    
+  
 docker cp jarvis_cppcheck-ubuntu20.04:$JARVIS_WORKSPACE/JARVIS/workspace/outputs/ $GITHUB_ACTION_PATH/jarvis/temp/       
 
 # python3 -m pip install --upgrade pip
