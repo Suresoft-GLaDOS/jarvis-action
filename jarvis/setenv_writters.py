@@ -75,6 +75,7 @@ export OPENAI_PATH="{os.getenv("OPENAI_PATH")}"
 
 export CHECKER="{os.getenv("CHECKER")}"
 export LANGUAGE="{os.getenv("LANGUAGE")}"
+export INIT_PATH="{os.getenv('INIT_PATH')}"
 
 export CSBUILD_USER_OPTION="{os.getenv("CSBUILD_USER_OPTION")}"
 
@@ -116,6 +117,7 @@ def _parse_yaml():
     os.environ["OPENAI_PATH"] = yml["openai-path"]
     os.environ["CHECKER"] = yml["checker"] if "checker" in yml else ""
     os.environ["LANGUAGE"] = yml["language"] if "language" in yml else ""
+    os.environ["INIT_PATH"] = yml["init_path"] if "init_path" in yml else ""
     os.environ["CSBUILD_USER_OPTION"] = yml["csbuild-option"] if "csbuild-option" in yml else ""
     print("User option: " + os.getenv("CSBUILD_USER_OPTION")) 
 
