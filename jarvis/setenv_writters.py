@@ -76,10 +76,13 @@ export OPENAI_PATH="{os.getenv("OPENAI_PATH")}"
 export CHECKER="{os.getenv("CHECKER")}"
 export LANGUAGE="{os.getenv("LANGUAGE")}"
 export INIT_PATH="{os.getenv('INIT_PATH')}"
+export STANDARD="{os.getenv('STANDARD')}"
 
 export CSBUILD_USER_OPTION="{os.getenv("CSBUILD_USER_OPTION")}"
 
                         """
+        
+        print(setenv_yml_data)
         f.write(setenv_yml_data)
 
 
@@ -118,6 +121,7 @@ def _parse_yaml():
     os.environ["CHECKER"] = yml["checker"] if "checker" in yml else ""
     os.environ["LANGUAGE"] = yml["language"] if "language" in yml else ""
     os.environ["INIT_PATH"] = yml["init_path"] if "init_path" in yml else ""
+    os.environ["STANDARD"] = yml["standard"] if "standard" in yml else ""
     os.environ["CSBUILD_USER_OPTION"] = yml["csbuild-option"] if "csbuild-option" in yml else ""
     print("User option: " + os.getenv("CSBUILD_USER_OPTION")) 
 
@@ -128,4 +132,5 @@ os.chdir(f"{GITHUB_ACTION_PATH}/jarvis")
 os.mkdir("env_sh")
 target_yml = _parse_yaml()
 setenv_writter()
+print("SETENV!")
 setenv_yml_writter(target_yml)
